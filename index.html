@@ -543,7 +543,7 @@
             <!-- Login Mode -->
             <div id="auth-view-login">
                 <h3 class="text-2xl font-bold mb-1 text-white">Espace Client</h3>
-                <p class="text-gray-400 text-xs mb-6">Connectez-vous pour suivre vos commandes et devis.</p>
+                <p class="text-gray-400 text-xs mb-6">Connectez-vous pour finaliser vos achats et accéder à vos commandes.</p>
                 
                 <form onsubmit="handleLogin(event)" class="space-y-4">
                     <div>
@@ -554,7 +554,7 @@
                         <label class="block text-xs font-semibold text-gray-400 mb-1">Mot de passe</label>
                         <input type="password" id="login-password" required placeholder="••••••••" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-purple-500">
                     </div>
-                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3.5 rounded-lg transition-all text-sm">Se connecter</button>
+                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3.5 rounded-lg transition-all text-sm">Se connecter & Continuer</button>
                 </form>
 
                 <div class="mt-6 text-center">
@@ -568,7 +568,7 @@
                     <h3 class="text-2xl font-bold text-white">Création de Compte</h3>
                     <span class="text-[10px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded border border-green-500/40 font-semibold">Formspree Direct</span>
                 </div>
-                <p class="text-gray-400 text-xs mb-4">Notification instantanée transmise à <strong class="text-purple-300">localpulse33@outlook.fr</strong>.</p>
+                <p class="text-gray-400 text-xs mb-4">Notification transmise à <strong class="text-purple-300">localpulse33@outlook.fr</strong>.</p>
                 
                 <form id="register-form" onsubmit="handleRegister(event)" class="space-y-3">
                     <div class="grid grid-cols-2 gap-3">
@@ -605,13 +605,13 @@
                         </div>
                         <div>
                             <label class="block text-[11px] font-semibold text-gray-400 mb-1">Code Postal *</label>
-                            <input type="text" id="reg-cp" name="code_postal" required placeholder="24120" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
+                            <input type="text" id="reg-cp" name="code_postal" required value="24120" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
                         </div>
                     </div>
 
                     <div>
                         <label class="block text-[11px] font-semibold text-gray-400 mb-1">Ville *</label>
-                        <input type="text" id="reg-ville" name="ville" required placeholder="Terrasson-Lavilledieu" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
+                        <input type="text" id="reg-ville" name="ville" required value="Terrasson-Lavilledieu" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
                     </div>
 
                     <div>
@@ -620,7 +620,7 @@
                     </div>
 
                     <button type="submit" id="reg-submit-btn" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-3 rounded-lg hover:opacity-90 transition-all text-xs mt-2 flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-paper-plane"></i> <span>Créer mon Compte & Envoyer à localpulse33@outlook.fr</span>
+                        <i class="fa-solid fa-paper-plane"></i> <span>Créer mon Compte & Payer</span>
                     </button>
                 </form>
 
@@ -629,16 +629,30 @@
                 </div>
             </div>
 
-            <!-- Logged View -->
-            <div id="auth-view-logged" class="hidden text-center py-4">
-                <div class="w-16 h-16 bg-green-500/20 border border-green-500/40 rounded-full flex items-center justify-center mx-auto mb-4 text-green-400 text-2xl">
+            <!-- Logged View & Password Change -->
+            <div id="auth-view-logged" class="hidden text-center py-2 space-y-4">
+                <div class="w-14 h-14 bg-green-500/20 border border-green-500/40 rounded-full flex items-center justify-center mx-auto text-green-400 text-xl">
                     <i class="fa-solid fa-user-check"></i>
                 </div>
-                <h3 class="text-xl font-bold text-white mb-1" id="logged-user-fullname">Jean Dupont</h3>
-                <p class="text-gray-400 text-xs mb-1" id="logged-user-email">jean@dupont.fr</p>
-                <p class="text-gray-500 text-[11px] mb-6" id="logged-user-address">Terrasson-Lavilledieu (24120)</p>
+                <div>
+                    <h3 class="text-lg font-bold text-white" id="logged-user-fullname">Jean Dupont</h3>
+                    <p class="text-gray-400 text-xs" id="logged-user-email">jean@dupont.fr</p>
+                    <p class="text-gray-500 text-[11px]" id="logged-user-address">Terrasson-Lavilledieu (24120)</p>
+                </div>
 
-                <div class="flex gap-2">
+                <!-- Client Password Update Form -->
+                <div class="bg-dark-950 p-4 rounded-xl border border-gray-800 text-left space-y-3">
+                    <h4 class="text-xs font-bold text-purple-400 uppercase"><i class="fa-solid fa-key mr-1"></i> Modifier mon mot de passe</h4>
+                    <form onsubmit="handleChangeClientPassword(event)" class="space-y-2">
+                        <div>
+                            <label class="block text-[10px] text-gray-400 mb-1">Nouveau mot de passe</label>
+                            <input type="password" id="new-client-pwd" required placeholder="Nouveau mot de passe" class="w-full bg-dark-900 border border-gray-700 rounded px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
+                        </div>
+                        <button type="submit" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 rounded text-xs transition-colors">Mettre à jour le mot de passe</button>
+                    </form>
+                </div>
+
+                <div class="flex gap-2 pt-2">
                     <button onclick="handleLogout()" class="w-full bg-red-600/20 border border-red-500/30 text-red-400 hover:bg-red-600 hover:text-white font-bold px-4 py-2.5 rounded-lg text-xs transition-all">
                         Déconnexion
                     </button>
@@ -685,7 +699,7 @@
                             <input type="radio" name="payment_method" value="stripe" checked class="text-purple-600">
                             <div>
                                 <strong class="block text-white text-xs"><i class="fa-brands fa-stripe text-blue-400 mr-1 text-sm"></i> Carte Bancaire (Paiement Stripe Sécurisé)</strong>
-                                <span class="text-[11px] text-gray-400">Redirection automatique vers votre lien officiel</span>
+                                <span class="text-[11px] text-gray-400">Redirection vers paiement officiel ou lien global</span>
                             </div>
                         </label>
                         
@@ -729,7 +743,7 @@
                     </div>
                     <div>
                         <h2 class="text-2xl font-bold text-white">Tableau de Bord Administrateur</h2>
-                        <p class="text-xs text-gray-400">Gestion des commandes, des utilisateurs et notifications Formspree</p>
+                        <p class="text-xs text-gray-400">Code secret actuel : <code class="text-purple-300 font-mono">fantome67000</code></p>
                     </div>
                 </div>
                 <button onclick="toggleAdminPanel()" class="text-gray-400 hover:text-white px-4 py-2 border border-gray-700 rounded-lg text-xs font-semibold">
@@ -740,8 +754,8 @@
             <!-- Admin Password Protection -->
             <div id="admin-login-box" class="max-w-sm mx-auto text-center py-8">
                 <i class="fa-solid fa-lock text-4xl text-purple-400 mb-4"></i>
-                <p class="text-sm text-gray-300 mb-4">Entrez le mot de passe administrateur :</p>
-                <input type="password" id="admin-pwd-input" placeholder="Mot de passe admin" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-4 py-3 text-white text-sm mb-4 focus:outline-none focus:border-purple-500">
+                <p class="text-sm text-gray-300 mb-4">Entrez le code secret administrateur (<code class="text-purple-300">fantome67000</code>) :</p>
+                <input type="password" id="admin-pwd-input" placeholder="Code secret (ex: fantome67000)" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-4 py-3 text-white text-sm mb-4 focus:outline-none focus:border-purple-500">
                 <button onclick="loginAdmin()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 rounded-lg text-sm transition-colors">
                     Accéder au Dashboard
                 </button>
@@ -752,16 +766,25 @@
                 <!-- Metrics -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div class="bg-dark-950 p-5 rounded-xl border border-gray-800">
-                        <span class="text-xs text-gray-400 font-semibold uppercase">Chiffre d'Affaires Enregistré</span>
+                        <span class="text-xs text-gray-400 font-semibold uppercase">Chiffre d'Affaires</span>
                         <div class="text-3xl font-black text-green-400 mt-2" id="admin-total-rev">0 €</div>
                     </div>
                     <div class="bg-dark-950 p-5 rounded-xl border border-gray-800">
-                        <span class="text-xs text-gray-400 font-semibold uppercase">Formspree & E-mail Reçu Sur</span>
+                        <span class="text-xs text-gray-400 font-semibold uppercase">Notification Email</span>
                         <div class="text-sm font-bold text-purple-400 mt-2 break-all">localpulse33@outlook.fr</div>
                     </div>
                     <div class="bg-dark-950 p-5 rounded-xl border border-gray-800">
                         <span class="text-xs text-gray-400 font-semibold uppercase">Clients Inscrits</span>
                         <div class="text-3xl font-black text-blue-400 mt-2" id="admin-users-count">0</div>
+                    </div>
+                </div>
+
+                <!-- Admin Password Change Box -->
+                <div class="bg-dark-950 p-5 rounded-xl border border-gray-800 max-w-md">
+                    <h3 class="text-sm font-bold text-white mb-2"><i class="fa-solid fa-key text-purple-400 mr-2"></i> Changer le Code Secret Admin</h3>
+                    <div class="flex gap-2">
+                        <input type="text" id="new-admin-code" placeholder="Nouveau code (ex: fantome67000)" class="flex-grow bg-dark-900 border border-gray-700 rounded px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
+                        <button onclick="updateAdminPassword()" class="bg-purple-600 hover:bg-purple-500 text-white font-bold px-4 py-2 rounded text-xs transition-colors">Modifier</button>
                     </div>
                 </div>
 
@@ -845,12 +868,21 @@
         // État de l'application
         let cart = [];
         let currentUser = null;
+        let pendingCheckoutAction = false;
 
         try {
             const storedUser = localStorage.getItem('localpulse_current_user');
             if (storedUser) currentUser = JSON.parse(storedUser);
+            
+            const storedCart = localStorage.getItem('localpulse_cart');
+            if (storedCart) cart = JSON.parse(storedCart);
+            
+            // Initialisation du code admin si absent
+            if (!localStorage.getItem('localpulse_admin_code')) {
+                localStorage.setItem('localpulse_admin_code', 'fantome67000');
+            }
         } catch (e) {
-            console.error("Erreur de lecture du stockage local.");
+            console.error("Erreur de stockage local.");
         }
 
         // Initialisation
@@ -860,16 +892,11 @@
             updateSimulator();
         };
 
-        // Verrouillage du défilement pour iOS/Android
         function toggleBodyScroll(lock) {
-            if (lock) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
+            if (lock) document.body.style.overflow = 'hidden';
+            else document.body.style.overflow = '';
         }
 
-        // Système de Notifications
         function showToast(message, type = 'success') {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
@@ -882,7 +909,6 @@
             setTimeout(() => toast.remove(), 4000);
         }
 
-        // Gestion des Modales
         function toggleAdminPanel() {
             const panel = document.getElementById('admin-panel');
             const isHidden = panel.classList.contains('hidden');
@@ -913,21 +939,33 @@
         }
 
         function toggleChat() {
-            const win = document.getElementById('chat-window');
-            win.classList.toggle('hidden');
+            document.getElementById('chat-window').classList.toggle('hidden');
         }
 
         // Logique Administrateur
         function loginAdmin() {
             const pwd = document.getElementById('admin-pwd-input').value;
-            if(pwd === 'admin' || pwd === 'localpulse2026' || pwd.length > 0) {
+            const correctCode = localStorage.getItem('localpulse_admin_code') || 'fantome67000';
+            
+            if(pwd === correctCode) {
                 document.getElementById('admin-login-box').classList.add('hidden');
                 document.getElementById('admin-content-box').classList.remove('hidden');
                 loadAdminData();
-                showToast("Accès administrateur accordé");
+                showToast("Accès administrateur accordé avec succès");
             } else {
-                showToast("Mot de passe incorrect", "error");
+                showToast("Code secret incorrect (essayez fantome67000)", "error");
             }
+        }
+
+        function updateAdminPassword() {
+            const newCode = document.getElementById('new-admin-code').value.trim();
+            if(newCode.length < 3) {
+                showToast("Le code doit contenir au moins 3 caractères", "error");
+                return;
+            }
+            localStorage.setItem('localpulse_admin_code', newCode);
+            showToast("Code secret admin mis à jour avec succès !");
+            document.getElementById('new-admin-code').value = '';
         }
 
         function loadAdminData() {
@@ -944,7 +982,7 @@
                     <div class="p-3 bg-dark-900 rounded-lg border border-gray-800 flex justify-between items-center">
                         <div>
                             <strong class="text-white">${o.clientName}</strong> (${o.clientEmail})
-                            <div class="text-[10px] text-gray-400">${o.date} • Mode : ${o.paymentMethod}</div>
+                            <div class="text-[10px] text-gray-400">${o.date} • Mode : ${o.paymentMethod} • Articles : ${o.items.map(i=>i.name+'(x'+i.quantity+')').join(', ')}</div>
                         </div>
                         <strong class="text-green-400 text-sm">${o.total.toFixed(2)} €</strong>
                     </div>`;
@@ -955,9 +993,9 @@
                     <div class="p-3 bg-dark-900 rounded-lg border border-gray-800 flex justify-between items-center">
                         <div>
                             <strong class="text-white">${u.prenom} ${u.nom}</strong> (${u.email})
-                            <div class="text-[10px] text-gray-400">${u.tel} • ${u.adresse}</div>
+                            <div class="text-[10px] text-gray-400">Tél : ${u.tel} • Adresse : ${u.adresse}</div>
                         </div>
-                        <span class="text-[10px] bg-purple-600/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30">Confirmé</span>
+                        <span class="text-[10px] bg-purple-600/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30">Actif</span>
                     </div>`;
             });
 
@@ -967,7 +1005,7 @@
             document.getElementById('admin-users-list').innerHTML = usersHtml;
         }
 
-        // Inscription, Connexion et Contacts
+        // Inscription, Connexion et Modification du MDP Client
         function switchAuthMode(mode) {
             if(mode === 'register') {
                 document.getElementById('auth-view-login').classList.add('hidden');
@@ -992,6 +1030,7 @@
             const adresse = document.getElementById('reg-adresse').value;
             const cp = document.getElementById('reg-cp').value;
             const ville = document.getElementById('reg-ville').value;
+            const password = document.getElementById('reg-pass').value;
 
             try {
                 await fetch(FORMSPREE_ENDPOINT, {
@@ -1004,16 +1043,22 @@
                     })
                 });
 
-                currentUser = { nom, prenom, email, tel, adresse: `${adresse}, ${cp} ${ville}` };
+                currentUser = { nom, prenom, email, tel, adresse: `${adresse}, ${cp} ${ville}`, password };
                 localStorage.setItem('localpulse_current_user', JSON.stringify(currentUser));
                 
                 const users = JSON.parse(localStorage.getItem('localpulse_registered_users') || '[]');
-                users.push(currentUser);
-                localStorage.setItem('localpulse_registered_users', JSON.stringify(users));
+                const filtered = users.filter(u => u.email !== email);
+                filtered.push(currentUser);
+                localStorage.setItem('localpulse_registered_users', JSON.stringify(filtered));
 
                 updateAuthUI();
                 toggleAuthModal();
                 showToast("Compte créé avec succès !");
+
+                if (pendingCheckoutAction) {
+                    pendingCheckoutAction = false;
+                    setTimeout(() => { toggleCart(); proceedToCheckout(); }, 500);
+                }
             } catch (err) {
                 showToast("Erreur lors de la création.", "error");
             } finally {
@@ -1052,20 +1097,44 @@
         function handleLogin(e) {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
-            // Simulation de connexion si le compte existe en local
+            const password = document.getElementById('login-password').value;
+            
             const users = JSON.parse(localStorage.getItem('localpulse_registered_users') || '[]');
-            const found = users.find(u => u.email === email);
+            const found = users.find(u => u.email === email && u.password === password);
             
             if (found) {
                 currentUser = found;
+                localStorage.setItem('localpulse_current_user', JSON.stringify(currentUser));
+                updateAuthUI();
+                toggleAuthModal();
+                showToast("Connexion réussie");
+
+                if (pendingCheckoutAction) {
+                    pendingCheckoutAction = false;
+                    setTimeout(() => { toggleCart(); proceedToCheckout(); }, 500);
+                }
             } else {
-                currentUser = { nom: 'Client', prenom: email.split('@')[0], email: email, tel: 'N/A', adresse: 'Terrasson-Lavilledieu (24120)' };
+                showToast("Email ou mot de passe incorrect", "error");
             }
-            
+        }
+
+        function handleChangeClientPassword(e) {
+            e.preventDefault();
+            const newPwd = document.getElementById('new-client-pwd').value.trim();
+            if(!newPwd || newPwd.length < 3) {
+                showToast("Le mot de passe doit comporter au moins 3 caractères", "error");
+                return;
+            }
+
+            currentUser.password = newPwd;
             localStorage.setItem('localpulse_current_user', JSON.stringify(currentUser));
-            updateAuthUI();
-            toggleAuthModal();
-            showToast("Connexion réussie");
+
+            let users = JSON.parse(localStorage.getItem('localpulse_registered_users') || '[]');
+            users = users.map(u => u.email === currentUser.email ? currentUser : u);
+            localStorage.setItem('localpulse_registered_users', JSON.stringify(users));
+
+            showToast("Mot de passe modifié avec succès !");
+            document.getElementById('new-client-pwd').value = '';
         }
 
         function handleLogout() {
@@ -1101,6 +1170,7 @@
             } else {
                 cart.push({ id, price, name, icon, quantity: 1 });
             }
+            localStorage.setItem('localpulse_cart', JSON.stringify(cart));
             updateCartUI();
             showToast(`${name} ajouté au panier`);
         }
@@ -1110,6 +1180,7 @@
             if(index !== -1) {
                 cart[index].quantity += delta;
                 if(cart[index].quantity <= 0) cart.splice(index, 1);
+                localStorage.setItem('localpulse_cart', JSON.stringify(cart));
                 updateCartUI();
             }
         }
@@ -1170,11 +1241,10 @@
         }
 
         function emptyCartAfterOrder() {
-            setTimeout(() => {
-                cart = [];
-                updateCartUI();
-                toggleCart();
-            }, 3500);
+            cart = [];
+            localStorage.removeItem('localpulse_cart');
+            updateCartUI();
+            setTimeout(() => { toggleCart(); }, 3000);
         }
 
         async function proceedToCheckout() {
@@ -1184,7 +1254,8 @@
             }
 
             if (!currentUser) {
-                showToast("Veuillez créer un compte ou vous connecter pour valider.", "error");
+                pendingCheckoutAction = true;
+                showToast("Veuillez vous connecter ou créer un compte pour payer.", "error");
                 toggleCart();
                 setTimeout(() => toggleAuthModal(), 350);
                 return;
@@ -1196,7 +1267,7 @@
             const orders = JSON.parse(localStorage.getItem('localpulse_orders') || '[]');
             const orderData = {
                 date: new Date().toLocaleDateString('fr-FR') + ' ' + new Date().toLocaleTimeString('fr-FR', {hour: '2digit', minute:'2digit'}),
-                clientName: `${currentUser.prenom} ${currentUser.nom}`,
+                clientName: `${currentUser.prenom} ${currentUser.nom || ''}`,
                 clientEmail: currentUser.email,
                 total: total,
                 paymentMethod: method === 'stripe' ? 'Stripe' : 'Virement',
@@ -1206,37 +1277,34 @@
             localStorage.setItem('localpulse_orders', JSON.stringify(orders));
 
             try {
-                fetch(FORMSPREE_ENDPOINT, {
+                await fetch(FORMSPREE_ENDPOINT, {
                     method: "POST",
                     headers: { "Content-Type": "application/json", "Accept": "application/json" },
                     body: JSON.stringify({
-                        _subject: `[COMMANDE] ${orderData.clientName} - ${total.toFixed(2)}€`,
+                        _subject: `[COMMANDE PAYÉE] ${orderData.clientName} - ${total.toFixed(2)}€`,
                         client: orderData.clientName,
                         email: orderData.clientEmail,
                         telephone: currentUser.tel || "Non renseigné",
+                        adresse: currentUser.adresse || "Terrasson-Lavilledieu",
                         montant_total: `${total.toFixed(2)} €`,
-                        mode: orderData.paymentMethod,
-                        articles: cart.map(i => `${i.name} (x${i.quantity})`).join(', ')
+                        mode_reglement: orderData.paymentMethod,
+                        articles: cart.map(i => `${i.name} (x${i.quantity}) - ${i.price * i.quantity}€`).join(' | ')
                     })
                 });
             } catch (err) {}
 
             if(method === 'stripe') {
-                if (cart.length === 1 && cart[0].quantity === 1) {
+                if (cart.length === 1 && cart[0].quantity === 1 && stripeLinks[cart[0].id]) {
                     const stripeUrl = stripeLinks[cart[0].id];
-                    if (stripeUrl) {
-                        showToast("Redirection vers Stripe...");
-                        setTimeout(() => window.location.href = stripeUrl, 1000);
-                    } else {
-                        showToast("Panier complexe : votre lien Stripe vous sera envoyé par email.");
-                        emptyCartAfterOrder();
-                    }
+                    showToast("Redirection vers le paiement sécurisé Stripe...");
+                    emptyCartAfterOrder();
+                    setTimeout(() => window.location.href = stripeUrl, 1200);
                 } else {
-                    showToast("Commande validée ! Un lien de paiement globalisé a été envoyé sur votre email.");
+                    showToast("Commande validée et enregistrée ! Notification transmise à localpulse33@outlook.fr.");
                     emptyCartAfterOrder();
                 }
             } else {
-                showToast("Commande enregistrée ! Procédez au virement avec le RIB indiqué.");
+                showToast("Commande enregistrée avec succès ! Veuillez effectuer le virement avec le RIB indiqué.");
                 emptyCartAfterOrder();
             }
         }
@@ -1278,7 +1346,7 @@
             setTimeout(() => {
                 document.getElementById(loadingId).remove();
                 container.innerHTML += `<div class="bg-dark-900 border border-gray-800 p-3 rounded-xl max-w-[85%] text-gray-200 text-xs leading-relaxed mb-3">
-                    LocalPulse Digital (Terrasson-Lavilledieu, 24120) a bien reçu votre demande. Pour un traitement immédiat, contactez-nous via le formulaire ou directement à localpulse33@outlook.fr.
+                    LocalPulse Digital (Terrasson-Lavilledieu, 24120) a bien reçu votre demande. Contactez-nous directement via le formulaire ou à localpulse33@outlook.fr.
                 </div>`;
                 container.scrollTop = container.scrollHeight;
             }, 1500);
