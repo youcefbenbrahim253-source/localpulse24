@@ -620,7 +620,7 @@
                     </div>
 
                     <button type="submit" id="reg-submit-btn" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-3 rounded-lg hover:opacity-90 transition-all text-xs mt-2 flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-paper-plane"></i> <span>Créer mon Compte & Payer</span>
+                        <i class="fa-solid fa-paper-plane"></i> <span>Créer mon Compte</span>
                     </button>
                 </form>
 
@@ -699,7 +699,7 @@
                             <input type="radio" name="payment_method" value="stripe" checked class="text-purple-600">
                             <div>
                                 <strong class="block text-white text-xs"><i class="fa-brands fa-stripe text-blue-400 mr-1 text-sm"></i> Carte Bancaire (Paiement Stripe Sécurisé)</strong>
-                                <span class="text-[11px] text-gray-400">Redirection vers paiement officiel ou lien global</span>
+                                <span class="text-[11px] text-gray-400">Redirection automatique vers votre lien officiel</span>
                             </div>
                         </label>
                         
@@ -868,7 +868,6 @@
         // État de l'application
         let cart = [];
         let currentUser = null;
-        let pendingCheckoutAction = false;
 
         try {
             const storedUser = localStorage.getItem('localpulse_current_user');
@@ -877,12 +876,11 @@
             const storedCart = localStorage.getItem('localpulse_cart');
             if (storedCart) cart = JSON.parse(storedCart);
             
-            // Initialisation du code admin si absent
             if (!localStorage.getItem('localpulse_admin_code')) {
                 localStorage.setItem('localpulse_admin_code', 'fantome67000');
             }
         } catch (e) {
-            console.error("Erreur de stockage local.");
+            console.error("Erreur de stockage local.", e);
         }
 
         // Initialisation
@@ -953,7 +951,7 @@
                 loadAdminData();
                 showToast("Accès administrateur accordé avec succès");
             } else {
-                showToast("Code secret incorrect (essayez fantome67000)", "error");
+                showToast("Code secret incorrect (fantome67000)", "error");
             }
         }
 
@@ -1005,7 +1003,7 @@
             document.getElementById('admin-users-list').innerHTML = usersHtml;
         }
 
-        // Inscription, Connexion et Modification du MDP Client
+        // Inscription & Connexion
         function switchAuthMode(mode) {
             if(mode === 'register') {
                 document.getElementById('auth-view-login').classList.add('hidden');
@@ -1033,7 +1031,7 @@
             const password = document.getElementById('reg-pass').value;
 
             try {
-                await fetch(FORMSPREE_ENDPOINT, {
+                fetch(FORMSPREE_ENDPOINT, {
                     method: "POST",
                     headers: { "Content-Type": "application/json", "Accept": "application/json" },
                     body: JSON.stringify({
@@ -1041,7 +1039,7 @@
                         type: "Création de Compte Client",
                         nom, prenom, email, telephone: tel, adresse_complete: `${adresse}, ${cp} ${ville}`
                     })
-                });
+                }).catch(e => console.warn(e));
 
                 currentUser = { nom, prenom, email, tel, adresse: `${adresse}, ${cp} ${ville}`, password };
                 localStorage.setItem('localpulse_current_user', JSON.stringify(currentUser));
@@ -1054,11 +1052,6 @@
                 updateAuthUI();
                 toggleAuthModal();
                 showToast("Compte créé avec succès !");
-
-                if (pendingCheckoutAction) {
-                    pendingCheckoutAction = false;
-                    setTimeout(() => { toggleCart(); proceedToCheckout(); }, 500);
-                }
             } catch (err) {
                 showToast("Erreur lors de la création.", "error");
             } finally {
@@ -1108,11 +1101,6 @@
                 updateAuthUI();
                 toggleAuthModal();
                 showToast("Connexion réussie");
-
-                if (pendingCheckoutAction) {
-                    pendingCheckoutAction = false;
-                    setTimeout(() => { toggleCart(); proceedToCheckout(); }, 500);
-                }
             } else {
                 showToast("Email ou mot de passe incorrect", "error");
             }
@@ -1162,7 +1150,7 @@
             }
         }
 
-        // Logique du Panier et Paiement
+        // Logique Panier & Paiement
         function addToCart(id, price, name, icon) {
             const existing = cart.find(i => i.id === id);
             if(existing) {
@@ -1240,72 +1228,82 @@
             });
         }
 
-        function emptyCartAfterOrder() {
-            cart = [];
-            localStorage.removeItem('localpulse_cart');
-            updateCartUI();
-            setTimeout(() => { toggleCart(); }, 3000);
-        }
-
+        // REDIRECTION ET FONCTION DE PAIEMENT CORRIGÉE
         async function proceedToCheckout() {
             if(cart.length === 0) {
-                showToast("Votre panier est vide", "error");
+                showToast("Votre panier est vide.", "error");
                 return;
             }
 
-            if (!currentUser) {
-                pendingCheckoutAction = true;
-                showToast("Veuillez vous connecter ou créer un compte pour payer.", "error");
-                toggleCart();
-                setTimeout(() => toggleAuthModal(), 350);
-                return;
-            }
-
+            const methodEl = document.querySelector('input[name="payment_method"]:checked');
+            const method = methodEl ? methodEl.value : 'stripe';
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const method = document.querySelector('input[name="payment_method"]:checked').value;
 
-            const orders = JSON.parse(localStorage.getItem('localpulse_orders') || '[]');
+            // Enregistrement de la commande
             const orderData = {
                 date: new Date().toLocaleDateString('fr-FR') + ' ' + new Date().toLocaleTimeString('fr-FR', {hour: '2digit', minute:'2digit'}),
-                clientName: `${currentUser.prenom} ${currentUser.nom || ''}`,
-                clientEmail: currentUser.email,
+                clientName: currentUser ? `${currentUser.prenom} ${currentUser.nom || ''}` : "Client Invité",
+                clientEmail: currentUser ? currentUser.email : "Non renseigné",
                 total: total,
                 paymentMethod: method === 'stripe' ? 'Stripe' : 'Virement',
                 items: [...cart]
             };
-            orders.push(orderData);
-            localStorage.setItem('localpulse_orders', JSON.stringify(orders));
 
             try {
-                await fetch(FORMSPREE_ENDPOINT, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json", "Accept": "application/json" },
-                    body: JSON.stringify({
-                        _subject: `[COMMANDE PAYÉE] ${orderData.clientName} - ${total.toFixed(2)}€`,
-                        client: orderData.clientName,
-                        email: orderData.clientEmail,
-                        telephone: currentUser.tel || "Non renseigné",
-                        adresse: currentUser.adresse || "Terrasson-Lavilledieu",
-                        montant_total: `${total.toFixed(2)} €`,
-                        mode_reglement: orderData.paymentMethod,
-                        articles: cart.map(i => `${i.name} (x${i.quantity}) - ${i.price * i.quantity}€`).join(' | ')
-                    })
-                });
-            } catch (err) {}
+                const orders = JSON.parse(localStorage.getItem('localpulse_orders') || '[]');
+                orders.push(orderData);
+                localStorage.setItem('localpulse_orders', JSON.stringify(orders));
+            } catch (e) {
+                console.error("Erreur de stockage local commande", e);
+            }
+
+            // Notification Formspree en arrière-plan (non bloquante)
+            fetch(FORMSPREE_ENDPOINT, {
+                method: "POST",
+                headers: { "Content-Type": "application/json", "Accept": "application/json" },
+                body: JSON.stringify({
+                    _subject: `[COMMANDE] ${orderData.clientName} - ${total.toFixed(2)}€ (${orderData.paymentMethod})`,
+                    client: orderData.clientName,
+                    email: orderData.clientEmail,
+                    telephone: currentUser ? (currentUser.tel || "Non renseigné") : "Non renseigné",
+                    adresse: currentUser ? (currentUser.adresse || "Terrasson-Lavilledieu") : "Non renseigné",
+                    montant_total: `${total.toFixed(2)} €`,
+                    mode_reglement: orderData.paymentMethod,
+                    articles: cart.map(i => `${i.name} (x${i.quantity}) - ${(i.price * i.quantity).toFixed(2)}€`).join(' | ')
+                })
+            }).catch(e => console.warn("Avis Formspree async:", e));
 
             if(method === 'stripe') {
-                if (cart.length === 1 && cart[0].quantity === 1 && stripeLinks[cart[0].id]) {
-                    const stripeUrl = stripeLinks[cart[0].id];
-                    showToast("Redirection vers le paiement sécurisé Stripe...");
-                    emptyCartAfterOrder();
-                    setTimeout(() => window.location.href = stripeUrl, 1200);
-                } else {
-                    showToast("Commande validée et enregistrée ! Notification transmise à localpulse33@outlook.fr.");
-                    emptyCartAfterOrder();
+                // Choix du lien de paiement
+                let targetStripeUrl = stripeLinks['pack_starter']; // Lien par défaut
+
+                if (cart.length === 1 && stripeLinks[cart[0].id]) {
+                    targetStripeUrl = stripeLinks[cart[0].id];
+                } else if (cart.length > 0 && stripeLinks[cart[0].id]) {
+                    targetStripeUrl = stripeLinks[cart[0].id];
                 }
+
+                showToast("Redirection vers le paiement sécurisé Stripe...", "success");
+
+                // Réinitialisation du panier
+                cart = [];
+                localStorage.removeItem('localpulse_cart');
+                updateCartUI();
+
+                // Redirection vers Stripe
+                setTimeout(() => {
+                    window.location.href = targetStripeUrl;
+                }, 800);
+
             } else {
-                showToast("Commande enregistrée avec succès ! Veuillez effectuer le virement avec le RIB indiqué.");
-                emptyCartAfterOrder();
+                // Virement
+                const bankBox = document.getElementById('bank-transfer-box');
+                if(bankBox) bankBox.classList.remove('hidden');
+                showToast("Commande enregistrée ! Veuillez effectuer le virement avec le RIB affiché.", "success");
+                
+                cart = [];
+                localStorage.removeItem('localpulse_cart');
+                updateCartUI();
             }
         }
 
@@ -1344,7 +1342,8 @@
             container.scrollTop = container.scrollHeight;
 
             setTimeout(() => {
-                document.getElementById(loadingId).remove();
+                const el = document.getElementById(loadingId);
+                if(el) el.remove();
                 container.innerHTML += `<div class="bg-dark-900 border border-gray-800 p-3 rounded-xl max-w-[85%] text-gray-200 text-xs leading-relaxed mb-3">
                     LocalPulse Digital (Terrasson-Lavilledieu, 24120) a bien reçu votre demande. Contactez-nous directement via le formulaire ou à localpulse33@outlook.fr.
                 </div>`;
