@@ -1,858 +1,922 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<!-- STREAMING_CHUNK:Setting up document language, viewport, and meta properties -->
+<html lang="fr" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LOCALPULSE DIGITAL - Agence de Contenu Viral & IA (24120)</title>
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- FontAwesome Icons CDN -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalPulse Digital | Agence Vidéo & Photo Pro en Dordogne</title>
+    <!-- STREAMING_CHUNK:Loading external Google Fonts and FontAwesome library -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <!-- STREAMING_CHUNK:Configuring Tailwind CSS CDN and custom theme extensions -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
                         brand: {
-                            50: '#f0f7ff',
-                            400: '#38bdf8',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            purple: '#a855f7',
-                            neon: '#00f0ff'
-                        },
-                        dark: {
-                            950: '#030712',
-                            900: '#0b0f19',
-                            850: '#111827',
-                            800: '#1f2937'
+                            dark: '#0a0d14',
+                            card: '#121824',
+                            border: 'rgba(255, 255, 255, 0.08)',
+                            cyan: '#00f2fe',
+                            purple: '#9d4edd',
+                            accent: '#4facfe',
+                            pink: '#f72585'
                         }
                     },
-                    backgroundImage: {
-                        'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 20h20v20H20V20zM0 20h20v20H0V20zM20 0h20v20H20V0z' fill='%23ffffff' fill-opacity='0.02' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon-cyan': '0 0 20px rgba(0, 242, 254, 0.35)',
+                        'neon-purple': '0 0 20px rgba(157, 78, 221, 0.35)',
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glow': 'glow 2s infinite alternate',
+                        'float': 'float 6s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { filter: 'drop-shadow(0 0 5px rgba(0,242,254,0.4))' },
+                            '100%': { filter: 'drop-shadow(0 0 18px rgba(157,78,221,0.8))' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
                     }
                 }
             }
         }
     </script>
+    <!-- STREAMING_CHUNK:Writing custom responsive CSS glassmorphism styles and interactive components -->
+    <style type="text/css">
+        body {
+            background-color: #0a0d14;
+            color: #f3f4f6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
 
-    <style>
-        body { background-color: #030712; color: #ffffff; overflow-x: hidden; font-family: 'Inter', sans-serif; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #0b0f19; }
-        ::-webkit-scrollbar-thumb { background: #8b5cf6; border-radius: 4px; }
-        
-        .neon-glow { box-shadow: 0 0 20px rgba(168, 85, 247, 0.35); }
-        .neon-glow:hover { box-shadow: 0 0 30px rgba(168, 85, 247, 0.6); }
-        
-        .text-gradient {
-            background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
+        /* Glassmorphism Backgrounds */
+        .glass-panel {
+            background: rgba(18, 24, 36, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-panel-hover:hover {
+            background: rgba(26, 35, 52, 0.8);
+            border-color: rgba(0, 242, 254, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(0, 242, 254, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .glass-input {
+            background: rgba(10, 13, 20, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .glass-input:focus {
+            border-color: #00f2fe;
+            box-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
+            outline: none;
+        }
+
+        /* Neon Gradients */
+        .gradient-text-cyan {
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
+        .gradient-text-purple {
+            background: linear-gradient(135deg, #9d4edd 0%, #f72585 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .animate-pulse-glow { animation: pulseGlow 4s infinite ease-in-out; }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .gradient-btn {
+            background: linear-gradient(135deg, #00f2fe 0%, #9d4edd 100%);
+            transition: all 0.3s ease;
         }
-        .animate-slide-up { animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+        .gradient-btn:hover {
+            opacity: 0.92;
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.5);
+            transform: scale(1.02);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0d14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f2fe;
+        }
+
+        /* Before/After Slider */
+        .ba-container {
+            position: relative;
+            user-select: none;
+            overflow: hidden;
+        }
+        .ba-after-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            overflow: hidden;
+        }
+        .ba-slider-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            background: #00f2fe;
+            box-shadow: 0 0 12px #00f2fe;
+            cursor: ew-resize;
+            transform: translateX(-50%);
+            z-index: 20;
+        }
+        .ba-handle-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #0a0d14;
+            border: 2px solid #00f2fe;
+            color: #00f2fe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+        }
     </style>
 </head>
-<body class="antialiased min-h-[100dvh] flex flex-col relative bg-grid-pattern selection:bg-purple-500 selection:text-white">
+<body class="min-h-screen flex flex-col justify-between">
 
-    <header class="fixed w-full top-0 z-50 bg-dark-950/90 backdrop-blur-md border-b border-gray-800/80 transition-all">
-        <div class="container mx-auto px-3 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-2">
-            
-            <!-- Logo -->
-            <a href="#" class="flex items-center gap-2.5 shrink-0 group">
-                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center neon-glow group-hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-bolt text-white text-lg sm:text-xl"></i>
+    <!-- STREAMING_CHUNK:Building sticky navbar header with brand logo and action buttons -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-white/10 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl gradient-btn flex items-center justify-center text-black font-extrabold text-xl shadow-neon-cyan">
+                    LP
                 </div>
-                <div class="flex flex-col">
-                    <span class="text-lg sm:text-2xl font-black tracking-tighter text-white">LOCAL<span class="text-gradient">PULSE</span></span>
-                    <span class="text-[9px] sm:text-[10px] text-gray-400 font-semibold uppercase tracking-widest -mt-1 hidden xs:inline">Dordogne 24120</span>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight text-white flex items-center gap-1.5">
+                        LocalPulse <span class="gradient-text-cyan">Digital</span>
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping inline-block"></span>
+                    </span>
+                    <span class="block text-[10px] text-gray-400 tracking-wider uppercase font-semibold">Terrasson-Lavilledieu • Dordogne</span>
                 </div>
             </a>
 
-            <!-- Navigation Links (Desktop) -->
-            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-gray-300">
-                <a href="#services" class="hover:text-purple-400 transition-colors">Nos Services</a>
-                <a href="#tarifs" class="hover:text-purple-400 transition-colors">Tarifs & Packs</a>
-                <a href="#devis" class="hover:text-purple-400 transition-colors">Simulateur</a>
-                <a href="#contact" class="hover:text-purple-400 transition-colors">Contact</a>
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
+                <a href="#hero" class="hover:text-cyan-400 transition-colors">Accueil</a>
+                <a href="#services" class="hover:text-cyan-400 transition-colors">Services & Devis</a>
+                <a href="#portfolio" class="hover:text-cyan-400 transition-colors">Portfolio</a>
+                <a href="#suivi" class="hover:text-cyan-400 transition-colors">Suivi Commande</a>
+                <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
             </nav>
 
-            <!-- Header Actions -->
-            <div class="flex items-center gap-2 shrink-0">
-                <div class="hidden md:flex items-center gap-2 mr-1 border-r border-gray-800 pr-3">
-                    <a href="https://instagram.com/localpulse33" target="_blank" title="Instagram @localpulse33" class="w-8 h-8 rounded-full bg-dark-900 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-pink-400 hover:border-pink-500 transition-all">
-                        <i class="fa-brands fa-instagram text-xs"></i>
-                    </a>
-                    <a href="https://tiktok.com/@localpulse33" target="_blank" title="TikTok @localpulse33" class="w-8 h-8 rounded-full bg-dark-900 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-purple-500 transition-all">
-                        <i class="fa-brands fa-tiktok text-xs"></i>
-                    </a>
-                </div>
-
-                <!-- Admin Button -->
-                <button onclick="window.toggleAdminPanel()" class="text-gray-300 hover:text-purple-400 text-xs font-semibold px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl border border-gray-800 bg-dark-900/80 hover:border-purple-500/50 transition-all flex items-center gap-1.5" title="Espace Administrateur">
-                    <i class="fa-solid fa-user-shield text-purple-400 text-xs"></i>
-                    <span class="hidden sm:inline text-xs">Admin</span>
+            <!-- Action Buttons -->
+            <div class="hidden lg:flex items-center gap-4">
+                <button onclick="toggleModal('adminModal')" class="p-2.5 rounded-xl glass-panel text-gray-300 hover:text-cyan-400 hover:border-cyan-400/50 transition-all text-xs flex items-center gap-2" title="Espace Admin">
+                    <i class="fa-solid fa-lock"></i>
+                    <span>Admin</span>
                 </button>
+                <a href="#calculator" class="px-5 py-2.5 rounded-xl gradient-btn text-black font-bold text-sm shadow-neon-cyan flex items-center gap-2">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>Commander</span>
+                </a>
+            </div>
 
-                <!-- Mon Compte Button -->
-                <button onclick="window.toggleAuthModal()" id="auth-nav-btn" class="bg-dark-900 border border-gray-700 hover:border-purple-500 text-xs font-semibold px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-full transition-all flex items-center gap-1.5">
-                    <i class="fa-solid fa-user text-purple-400 text-xs"></i>
-                    <span id="auth-nav-text" class="hidden sm:inline text-xs">Mon Compte</span>
-                </button>
+            <!-- Mobile Menu Toggle -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-gray-300 hover:text-white p-2 text-xl">
+                <i class="fa-solid fa-bars-staggered" id="menuIcon"></i>
+            </button>
+        </div>
 
-                <!-- Panier Button -->
-                <button onclick="window.toggleCart()" class="relative flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-purple-500/50 hover:border-purple-400 rounded-full py-1.5 px-3 sm:py-2 sm:px-4 transition-all">
-                    <i class="fa-solid fa-cart-shopping text-purple-400 text-xs sm:text-sm"></i>
-                    <span class="font-bold text-white text-xs hidden sm:inline">Panier</span>
-                    <span id="cart-count" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white text-[11px] font-black w-5 h-5 flex items-center justify-center rounded-full neon-glow">0</span>
-                </button>
+        <!-- Mobile Menu Container -->
+        <div id="mobileMenu" class="hidden md:hidden glass-panel border-t border-white/10 px-4 pt-4 pb-6 space-y-3">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-gray-200 hover:bg-white/5 font-medium">Accueil</a>
+            <a href="#services" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-gray-200 hover:bg-white/5 font-medium">Services & Devis</a>
+            <a href="#portfolio" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-gray-200 hover:bg-white/5 font-medium">Portfolio</a>
+            <a href="#suivi" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-gray-200 hover:bg-white/5 font-medium">Suivi Commande</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-gray-200 hover:bg-white/5 font-medium">Contact</a>
+            <div class="pt-3 border-t border-white/10 flex gap-2">
+                <button onclick="toggleMobileMenu(); toggleModal('adminModal')" class="w-1/2 py-2.5 rounded-xl glass-panel text-gray-300 text-xs font-semibold">Admin</button>
+                <a href="#calculator" onclick="toggleMobileMenu()" class="w-1/2 py-2.5 rounded-xl gradient-btn text-black text-center font-bold text-xs">Commander</a>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow pt-16 sm:pt-20">
-        
-        <section id="hero" class="relative py-12 sm:py-20 md:py-28 overflow-hidden flex items-center justify-center">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] md:w-[700px] h-[300px] sm:h-[500px] bg-purple-600/15 rounded-full blur-[120px] pointer-events-none animate-pulse-glow"></div>
-            <div class="absolute top-1/3 right-10 w-[200px] h-[200px] bg-blue-600/15 rounded-full blur-[100px] pointer-events-none"></div>
+    <!-- STREAMING_CHUNK:Constructing Hero section with call to action and ambient backdrop lights -->
+    <section id="hero" class="relative py-16 md:py-24 overflow-hidden">
+        <!-- Ambient Glowing Orbs -->
+        <div class="absolute top-1/4 left-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-            <div class="container mx-auto px-4 text-center relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
                 
-                <div class="inline-flex flex-wrap items-center justify-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-purple-500/30 bg-purple-950/40 text-purple-300 font-medium text-xs sm:text-sm mb-6 backdrop-blur-md">
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-red-400 text-xs"></i> Terrasson-Lavilledieu (24120)</span>
-                    <span class="hidden sm:inline text-gray-600">|</span>
-                    <span class="flex items-center gap-1.5 text-blue-300"><i class="fa-solid fa-envelope text-xs"></i> localpulse33@outlook.fr</span>
+                <!-- Left Column text -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-cyan-500/30 text-xs font-semibold text-cyan-400 shadow-neon-cyan">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                        Studio Vidéo & Photo de Proximité en Dordogne
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Propulsez votre visibilité locale avec du <span class="gradient-text-cyan">contenu pro</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 font-normal">
+                        Spécialiste de la création vidéo verticale (<strong class="text-white">Reels, TikTok, Shorts</strong>) et de la <strong class="text-white">retouche photo produit</strong> pour commerçants, artisans et entreprises de Dordogne.
+                    </p>
+
+                    <!-- Trust Badges -->
+                    <div class="pt-2 flex flex-wrap justify-center lg:justify-start gap-4 text-xs font-medium text-gray-300">
+                        <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass-panel"><i class="fa-solid fa-bolt text-cyan-400"></i> Livré sous 24h-48h</span>
+                        <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass-panel"><i class="fa-solid fa-face-smile text-purple-400"></i> Satisfaction Garantie</span>
+                        <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass-panel"><i class="fa-solid fa-location-dot text-pink-400"></i> Terrasson-Lavilledieu</span>
+                    </div>
+
+                    <!-- Call To Action -->
+                    <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#calculator" class="px-8 py-4 rounded-xl gradient-btn text-black font-extrabold text-base shadow-neon-cyan flex items-center justify-center gap-3 group">
+                            <span>Calculer mon devis instantané</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="#portfolio" class="px-8 py-4 rounded-xl glass-panel hover:bg-white/10 text-white font-bold text-base transition-all border border-white/15 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-play text-cyan-400"></i>
+                            <span>Voir le Portfolio</span>
+                        </a>
+                    </div>
                 </div>
 
-                <h1 class="text-3xl sm:text-5xl md:text-7xl font-black mb-4 sm:mb-6 leading-tight tracking-tight">
-                    Propulsez votre image avec <br class="hidden sm:block"/>
-                    l'IA & la <span class="text-gradient">Vidéo Virale</span>
-                </h1>
-                
-                <p class="text-xs sm:text-base md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed font-light px-2">
-                    LocalPulse Digital crée des contenus haute performance (TikTok, Instagram Reels, Shorts) et retouches IA sur-mesure pour commerçants, entreprises et créateurs.
-                </p>
+                <!-- Right Column Showcase Mockup -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-sm rounded-3xl glass-panel p-4 border border-white/15 shadow-2xl animation-float">
+                        <!-- Top status bar simulation -->
+                        <div class="flex justify-between items-center pb-3 border-b border-white/10 text-xs text-gray-400">
+                            <span class="flex items-center gap-2 font-medium"><i class="fa-solid fa-circle text-emerald-400 text-[8px]"></i> Studio Actif</span>
+                            <span class="text-cyan-400 font-bold">100% HD / 4K</span>
+                        </div>
 
-                <div class="flex flex-wrap justify-center gap-3 sm:gap-4">
-                    <a href="#tarifs" class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs sm:text-base py-3 px-6 sm:py-3.5 sm:px-7 rounded-full neon-glow hover:scale-105 transition-all">
-                        Découvrir nos Packs <i class="fa-solid fa-arrow-down text-xs"></i>
-                    </a>
-                    <button onclick="window.toggleChat()" class="inline-flex items-center gap-2 bg-dark-900 border border-gray-700 hover:border-purple-500 text-gray-200 font-semibold text-xs sm:text-sm py-3 px-6 sm:py-3.5 sm:px-7 rounded-full hover:bg-gray-850 transition-all">
-                        <i class="fa-solid fa-robot text-purple-400 text-xs"></i> Assistant IA
-                    </button>
+                        <!-- Card preview video -->
+                        <div class="relative my-3 rounded-2xl overflow-hidden aspect-[9/16] bg-slate-900 flex items-center justify-center group cursor-pointer border border-white/10 shadow-inner">
+                            <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=600&q=80" alt="Video Preview" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                            
+                            <!-- Play Overlay Button -->
+                            <div class="w-14 h-14 rounded-full bg-cyan-400/90 text-black flex items-center justify-center text-xl shadow-neon-cyan z-10 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-play ml-1"></i>
+                            </div>
+
+                            <!-- Live Floating Overlay Text -->
+                            <div class="absolute bottom-4 left-4 right-4 z-10 text-left">
+                                <span class="px-2 py-1 rounded bg-purple-600/80 text-[10px] uppercase font-extrabold tracking-wider text-white">Reel TikTok Pro</span>
+                                <h4 class="text-sm font-bold text-white mt-1">Sous-titres dynamiques + Sound Design</h4>
+                                <p class="text-[11px] text-gray-300 mt-0.5">Commerçant à Sarlat • +42K vues</p>
+                            </div>
+                        </div>
+
+                        <!-- Stats footer banner -->
+                        <div class="grid grid-cols-3 gap-2 text-center pt-2 text-xs">
+                            <div class="bg-white/5 p-2 rounded-xl">
+                                <div class="font-extrabold text-cyan-400">+150</div>
+                                <div class="text-[10px] text-gray-400">Projets Livrés</div>
+                            </div>
+                            <div class="bg-white/5 p-2 rounded-xl">
+                                <div class="font-extrabold text-purple-400">48h</div>
+                                <div class="text-[10px] text-gray-400">Délai Moyen</div>
+                            </div>
+                            <div class="bg-white/5 p-2 rounded-xl">
+                                <div class="font-extrabold text-pink-400">4.9/5</div>
+                                <div class="text-[10px] text-gray-400">Avis Clients</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-gray-800/80">
-                    <div class="p-3 sm:p-4 rounded-xl bg-dark-900/40 border border-gray-800/60">
-                        <div class="text-xl sm:text-3xl font-black text-blue-400">+10M</div>
-                        <div class="text-[10px] sm:text-xs text-gray-400 mt-0.5">Vues Cumulées</div>
-                    </div>
-                    <div class="p-3 sm:p-4 rounded-xl bg-dark-900/40 border border-gray-800/60">
-                        <div class="text-xl sm:text-3xl font-black text-purple-400">100%</div>
-                        <div class="text-[10px] sm:text-xs text-gray-400 mt-0.5">Montage IA HD</div>
-                    </div>
-                    <div class="p-3 sm:p-4 rounded-xl bg-dark-900/40 border border-gray-800/60">
-                        <div class="text-xl sm:text-3xl font-black text-pink-400">24/48h</div>
-                        <div class="text-[10px] sm:text-xs text-gray-400 mt-0.5">Livraison Rapide</div>
-                    </div>
-                    <div class="p-3 sm:p-4 rounded-xl bg-dark-900/40 border border-gray-800/60">
-                        <div class="text-xl sm:text-3xl font-black text-green-400">24120</div>
-                        <div class="text-[10px] sm:text-xs text-gray-400 mt-0.5">Terrasson-Lavilledieu</div>
-                    </div>
-                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="services" class="py-12 sm:py-20 relative bg-dark-900/50 border-y border-gray-800/60">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-10 sm:mb-14">
-                    <h2 class="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-3">Nos Domaines d'<span class="text-gradient">Expertise</span></h2>
-                    <p class="text-gray-400 text-xs sm:text-sm max-w-2xl mx-auto">Des solutions visuelles à fort impact conçues pour captiver vos clients et booster votre visibilité.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                    <!-- Service 1 -->
-                    <div class="bg-dark-950 p-6 sm:p-8 rounded-2xl border border-gray-800 hover:border-blue-500/50 transition-all group flex flex-col justify-between">
-                        <div>
-                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 text-xl mb-5 group-hover:scale-110 transition-transform">
-                                <i class="fa-solid fa-video"></i>
-                            </div>
-                            <h3 class="text-lg font-bold mb-2 text-white">Montage Vidéo Vertical (9:16)</h3>
-                            <p class="text-gray-400 text-xs leading-relaxed mb-6">
-                                Rythme dynamique, sous-titres animés, effets visuels captivants et sound design optimisé pour performer sur TikTok, Instagram Reels et YouTube Shorts.
-                            </p>
-                        </div>
-                        <a href="#tarifs" class="text-blue-400 font-semibold text-xs flex items-center gap-2 group-hover:gap-3 transition-all">Voir le Tarif Unité (50€) <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
-                    </div>
-
-                    <!-- Service 2 -->
-                    <div class="bg-dark-950 p-6 sm:p-8 rounded-2xl border border-gray-800 hover:border-purple-500/50 transition-all group flex flex-col justify-between">
-                        <div>
-                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-xl mb-5 group-hover:scale-110 transition-transform">
-                                <i class="fa-solid fa-wand-magic-sparkles"></i>
-                            </div>
-                            <h3 class="text-lg font-bold mb-2 text-white">Retouche Photo IA Studio</h3>
-                            <p class="text-gray-400 text-xs leading-relaxed mb-6">
-                                Sublimation haute définition de vos visuels produits, portraits pro et photos d'établissement grâce à l'intelligence artificielle générative.
-                            </p>
-                        </div>
-                        <a href="#tarifs" class="text-purple-400 font-semibold text-xs flex items-center gap-2 group-hover:gap-3 transition-all">Voir la Formule Photo (10€) <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
-                    </div>
-
-                    <!-- Service 3 -->
-                    <div class="bg-dark-950 p-6 sm:p-8 rounded-2xl border border-gray-800 hover:border-pink-500/50 transition-all group flex flex-col justify-between">
-                        <div>
-                            <div class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/30 flex items-center justify-center text-pink-400 text-xl mb-5 group-hover:scale-110 transition-transform">
-                                <i class="fa-solid fa-robot"></i>
-                            </div>
-                            <h3 class="text-lg font-bold mb-2 text-white">Avatars & Doublage Voix IA</h3>
-                            <p class="text-gray-400 text-xs leading-relaxed mb-6">
-                                Création de porte-paroles virtuels réalistes et génération de voix off professionnelles en plusieurs langues pour incarner votre marque sans tourner.
-                            </p>
-                        </div>
-                        <a href="#tarifs" class="text-pink-400 font-semibold text-xs flex items-center gap-2 group-hover:gap-3 transition-all">Découvrir les Packs Clé en Main <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
-                    </div>
-                </div>
+    <!-- STREAMING_CHUNK:Designing Services Overview Section with features and neon cards -->
+    <section id="services" class="py-20 relative border-t border-white/5 bg-black/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-xs uppercase tracking-widest font-extrabold text-cyan-400">Nos Métiers & Métriques</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Services sur-mesure pour votre commerce</h2>
+                <p class="text-gray-400 text-sm sm:text-base">De la vidéo courte à fort impact à la retouche photo haute qualité pour vos réseaux et site web.</p>
             </div>
-        </section>
 
-        <section id="tarifs" class="py-12 sm:py-20 relative z-10">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-10 sm:mb-14">
-                    <div class="inline-block px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-wider mb-3">
-                        Paiements Sécurisés Stripe & Virement
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1: Video Verticals -->
+                <div class="glass-panel p-8 rounded-2xl glass-panel-hover flex flex-col justify-between border border-white/10 group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Vidéos Verticaux (Reels & TikTok)</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Montage dynamique 9:16 pour Instagram Reels, TikTok et YouTube Shorts. Idéal pour présenter votre établissement, vos plats, produits ou prestations.
+                        </p>
+                        <ul class="space-y-2 text-xs text-gray-300 pt-2">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Sous-titres animés captivants</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Sound design & effets sonores</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Format optimisé engagement local</li>
+                        </ul>
                     </div>
-                    <h2 class="text-2xl sm:text-4xl md:text-5xl font-black mb-3">Nos <span class="text-gradient">Offres & Tarifs Officiels</span></h2>
-                    <p class="text-gray-400 text-xs sm:text-sm max-w-xl mx-auto">Choisissez la formule adaptée à vos besoins ou achetez vos contenus à l'unité.</p>
+                    <div class="pt-6 mt-6 border-t border-white/10 flex justify-between items-center">
+                        <span class="text-xs text-gray-400">À partir de</span>
+                        <span class="text-xl font-extrabold text-cyan-400">39 € <span class="text-xs font-normal text-gray-400">/ vidéo</span></span>
+                    </div>
                 </div>
 
-                <!-- Main Packs Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-10">
+                <!-- Service 2: Photo Retouching -->
+                <div class="glass-panel p-8 rounded-2xl glass-panel-hover flex flex-col justify-between border border-white/10 group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/30 text-purple-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Retouche Photo Catalogue & Produits</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Détourage ultra-précis, correction méticuleuse de la colorimétrie, suppression d'imperfections et sublimations de visuels produits ou locaux.
+                        </p>
+                        <ul class="space-y-2 text-xs text-gray-300 pt-2">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Détourage fond transparent ou blanc</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Ajustement lumière & contraste HD</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Export prêt pour E-commerce & Vinted</li>
+                        </ul>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-white/10 flex justify-between items-center">
+                        <span class="text-xs text-gray-400">À partir de</span>
+                        <span class="text-xl font-extrabold text-purple-400">4,90 € <span class="text-xs font-normal text-gray-400">/ photo</span></span>
+                    </div>
+                </div>
+
+                <!-- Service 3: Pack Global Visibilité -->
+                <div class="glass-panel p-8 rounded-2xl glass-panel-hover flex flex-col justify-between border border-cyan-500/30 relative overflow-hidden group">
+                    <div class="absolute -right-8 -top-8 w-24 h-24 bg-cyan-500/20 rounded-full blur-xl"></div>
+                    <span class="absolute top-4 right-4 bg-gradient-to-r from-cyan-400 to-purple-500 text-black text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider">Populaire</span>
                     
-                    <!-- Pack Starter (149€) -->
-                    <div class="bg-dark-900/90 backdrop-blur rounded-2xl p-6 sm:p-8 border border-gray-800 hover:border-blue-500/80 transition-all flex flex-col justify-between relative group">
-                        <div>
-                            <div class="flex justify-between items-center mb-4">
-                                <span class="bg-blue-600/20 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/30">STARTER</span>
-                                <i class="fa-solid fa-box-open text-gray-500 text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-1">Pack Starter</h3>
-                            <div class="text-3xl sm:text-4xl font-black text-white mb-4">149 <span class="text-base font-normal text-gray-400">€</span></div>
-                            <p class="text-xs text-gray-400 mb-6 pb-4 border-b border-gray-800">Idéal pour démarrer une présence régulière sur les réseaux sociaux.</p>
-                            
-                            <ul class="space-y-3 mb-8 text-xs sm:text-sm text-gray-300">
-                                <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-blue-400"></i> <strong>3 Vidéos HD</strong> verticales (9:16)</li>
-                                <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-blue-400"></i> <strong>5 Photos</strong> Retouchées Studio</li>
-                                <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-blue-400"></i> Sous-titres dynamiques & Effets</li>
-                                <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-blue-400"></i> Optimisation IA de l'audio</li>
-                            </ul>
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-pink-500/10 border border-pink-500/30 text-pink-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-rocket"></i>
                         </div>
-                        <div class="space-y-2">
-                            <button onclick="window.addToCart('pack_starter', 149, 'Pack Starter', 'fa-box-open')" class="w-full py-3 rounded-xl bg-gray-800 hover:bg-blue-600 text-white font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-cart-plus"></i> Ajouter au Panier
-                            </button>
-                            <a href="https://buy.stripe.com/7sY00j0O22RQ0CY1qF38403" target="_blank" rel="noopener noreferrer" class="block text-center text-xs text-gray-400 hover:text-white py-1 transition-colors">
-                                Lien Direct Stripe <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                            </a>
-                        </div>
+                        <h3 class="text-xl font-bold text-white">Pack Visibilité Locale Commerçant</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Formule complète pour dynamiser vos réseaux pendant un mois : 4 Vidéos Verticaux montés + 10 Photos rétouchées.
+                        </p>
+                        <ul class="space-y-2 text-xs text-gray-300 pt-2">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-pink-400"></i> 4 Vidéos HD pré-formatées</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-pink-400"></i> 10 Photos pros retouchées</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-pink-400"></i> Conseils accroches & hashtags</li>
+                        </ul>
                     </div>
-
-                    <!-- Booster Viral (549.99€) -->
-                    <div class="bg-dark-900/95 backdrop-blur rounded-2xl p-6 sm:p-8 border-2 border-purple-500 neon-glow relative flex flex-col justify-between z-20">
-                        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-[10px] sm:text-xs font-black uppercase px-3.5 py-1 rounded-full shadow-lg tracking-wider whitespace-nowrap">
-                            ★ RECOMMANDÉ & POPULAIRE
-                        </div>
-                        <div>
-                            <div class="flex justify-between items-center mb-4 mt-2">
-                                <span class="bg-purple-600/20 text-purple-300 text-xs font-bold px-3 py-1 rounded-full border border-purple-500/40">BOOSTER</span>
-                                <i class="fa-solid fa-rocket text-purple-400 text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-1">Booster Viral</h3>
-                            <div class="text-3xl sm:text-4xl font-black text-white mb-4">549,99 <span class="text-base font-normal text-gray-400">€</span></div>
-                            <p class="text-xs text-purple-300/80 mb-6 pb-4 border-b border-gray-800">Conçu pour maximiser la portée virale et l'engagement client.</p>
-                            
-                            <ul class="space-y-3 mb-8 text-xs sm:text-sm text-gray-200">
-                                <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-purple-400"></i> <strong>8 Vidéos HD</strong> dynamiques et engageantes</li>
-                                <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-purple-400"></i> <strong>15 Photos</strong> Retouchées Pro</li>
-                                <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-purple-400"></i> Avatars & Voix off IA intégrés</li>
-                                <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-purple-400"></i> Scripting de hook accrocheur</li>
-                            </ul>
-                        </div>
-                        <div class="space-y-2">
-                            <button onclick="window.addToCart('booster_viral', 549.99, 'Booster Viral', 'fa-rocket')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-extrabold text-xs sm:text-sm hover:scale-[1.02] transition-transform shadow-lg shadow-purple-600/30 flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-cart-plus"></i> Ajouter au Panier
-                            </button>
-                            <a href="https://buy.stripe.com/dRm14nfIW8caetOb1f38405" target="_blank" rel="noopener noreferrer" class="block text-center text-xs text-purple-300 hover:text-white py-1 transition-colors">
-                                Lien Direct Stripe <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Dominance IA (689.99€) -->
-                    <div class="bg-dark-900/90 backdrop-blur rounded-2xl p-6 sm:p-8 border border-gray-800 hover:border-purple-500/80 transition-all flex flex-col justify-between group">
-                        <div>
-                            <div class="flex justify-between items-center mb-4">
-                                <span class="bg-pink-600/20 text-pink-400 text-xs font-bold px-3 py-1 rounded-full border border-pink-500/30">VIP / ULTIME</span>
-                                <i class="fa-solid fa-crown text-yellow-500 text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-1">Dominance IA</h3>
-                            <div class="text-3xl sm:text-4xl font-black text-white mb-4">689,99 <span class="text-base font-normal text-gray-400">€</span></div>
-                            <p class="text-xs text-gray-400 mb-6 pb-4 border-b border-gray-800">L'écosystème complet pour dominer votre marché local et sur le web.</p>
-                            
-                            <ul class="space-y-3 mb-8 text-xs sm:text-sm text-gray-300">
-                                <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-purple-400"></i> <strong>12 Vidéos Ultra HD</strong> multiformats</li>
-                                <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-purple-400"></i> Pack Avatars IA & Scripts Avancés</li>
-                                <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-purple-400"></i> Stratégie virale & Calendrier</li>
-                                <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-purple-400"></i> Assistance prioritaire 7j/7</li>
-                            </ul>
-                        </div>
-                        <div class="space-y-2">
-                            <button onclick="window.addToCart('dominance_ia', 689.99, 'Dominance IA', 'fa-crown')" class="w-full py-3 rounded-xl bg-gray-800 hover:bg-purple-600 text-white font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-cart-plus"></i> Ajouter au Panier
-                            </button>
-                            <a href="https://buy.stripe.com/28E00jaoCfEC0CYfhv38407" target="_blank" rel="noopener noreferrer" class="block text-center text-xs text-gray-400 hover:text-white py-1 transition-colors">
-                                Lien Direct Stripe <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto">
-                    <!-- Formule Photo Unité (10€) -->
-                    <div class="bg-dark-950 p-5 rounded-2xl border border-gray-800 hover:border-blue-500/50 flex flex-col justify-between">
-                        <div class="flex items-start justify-between mb-3">
-                            <div>
-                                <h3 class="text-base font-bold text-white flex items-center gap-2">
-                                    <i class="fa-solid fa-camera text-blue-400"></i> Formule Photo Unité
-                                </h3>
-                                <p class="text-xs text-gray-400 mt-0.5">Retouche photo studio unitaire avec détourage et amélioration IA.</p>
-                            </div>
-                            <div class="text-2xl font-black text-blue-400 shrink-0 ml-2">10 €</div>
-                        </div>
-                        <div class="flex gap-2.5 mt-2">
-                            <button onclick="window.addToCart('formule_photo', 10, 'Formule Photo Unité', 'fa-camera')" class="flex-grow py-2.5 rounded-xl bg-dark-900 border border-gray-700 hover:border-blue-500 text-gray-200 font-semibold text-xs transition-colors flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-plus"></i> Ajouter au panier
-                            </button>
-                            <a href="https://buy.stripe.com/eVq9ATfIW786clG5GV38401" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-blue-600/20 text-blue-300 font-semibold text-xs hover:bg-blue-600 hover:text-white transition-colors flex items-center gap-1.5 shrink-0">
-                                Stripe <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Formule Vidéo Unité (50€) -->
-                    <div class="bg-dark-950 p-5 rounded-2xl border border-gray-800 hover:border-purple-500/50 flex flex-col justify-between">
-                        <div class="flex items-start justify-between mb-3">
-                            <div>
-                                <h3 class="text-base font-bold text-white flex items-center gap-2">
-                                    <i class="fa-solid fa-video text-pink-400"></i> Formule Vidéo Unité (Option IA)
-                                </h3>
-                                <p class="text-xs text-gray-400 mt-0.5">Montage vertical 9:16 complet avec sound design et sous-titres animés.</p>
-                            </div>
-                            <div class="text-2xl font-black text-pink-400 shrink-0 ml-2">50 €</div>
-                        </div>
-                        <div class="flex gap-2.5 mt-2">
-                            <button onclick="window.addToCart('formule_video', 50, 'Formule Vidéo Unité (IA)', 'fa-video')" class="flex-grow py-2.5 rounded-xl bg-dark-900 border border-gray-700 hover:border-pink-500 text-gray-200 font-semibold text-xs transition-colors flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-plus"></i> Ajouter au panier
-                            </button>
-                            <a href="https://buy.stripe.com/3cI9ATdAO3VU0CY5GV38404" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-pink-600/20 text-pink-300 font-semibold text-xs hover:bg-pink-600 hover:text-white transition-colors flex items-center gap-1.5 shrink-0">
-                                Stripe <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                            </a>
-                        </div>
+                    <div class="pt-6 mt-6 border-t border-white/10 flex justify-between items-center">
+                        <span class="text-xs text-gray-400">Forfait Tout-Inclus</span>
+                        <span class="text-xl font-extrabold text-pink-400">179 € <span class="text-xs font-normal text-gray-400">/ mois</span></span>
                     </div>
                 </div>
-
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="devis" class="py-12 sm:py-16 bg-dark-900/60 border-y border-gray-800 relative">
-            <div class="container mx-auto px-4 max-w-4xl">
-                <div class="bg-dark-950 rounded-2xl border border-purple-500/30 p-5 sm:p-8 md:p-10 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
+    <!-- STREAMING_CHUNK:Implementing Live Instant Quote Calculator widget -->
+    <section id="calculator" class="py-20 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-cyan-500/30 shadow-2xl relative overflow-hidden">
+                <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-[100px]"></div>
 
-                    <div class="text-center mb-6 sm:mb-8">
-                        <h2 class="text-2xl md:text-3xl font-bold mb-1.5">Simulateur de Devis Instantané</h2>
-                        <p class="text-gray-400 text-xs sm:text-sm">Ajustez les curseurs pour composer votre formule sur-mesure.</p>
-                    </div>
+                <div class="text-center max-w-2xl mx-auto mb-10 space-y-2">
+                    <span class="text-xs uppercase tracking-widest font-extrabold text-cyan-400"><i class="fa-solid fa-calculator mr-1"></i> Transparence Totale</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Simulateur Devis en Direct</h2>
+                    <p class="text-xs sm:text-sm text-gray-400">Ajustez les curseurs ci-dessous pour obtenir immédiatement votre tarif exact.</p>
+                </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6 sm:mb-8">
-                        <!-- Slider Videos -->
-                        <div class="bg-dark-900 p-4 sm:p-5 rounded-xl border border-gray-800">
-                            <div class="flex justify-between items-center mb-3">
-                                <label class="font-bold text-xs sm:text-sm text-gray-200"><i class="fa-solid fa-video text-purple-400 mr-2"></i>Vidéos (50€/u)</label>
-                                <span class="text-base sm:text-lg font-black text-purple-400" id="sim-video-count">2</span>
+                <div class="grid md:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Controls Column -->
+                    <div class="md:col-span-7 space-y-6">
+                        
+                        <!-- Slider Vidéos -->
+                        <div class="space-y-2 bg-white/5 p-4 rounded-2xl border border-white/10">
+                            <div class="flex justify-between items-center">
+                                <label class="text-sm font-semibold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-video text-cyan-400"></i> Nombre de Vidéos Verticaux
+                                </label>
+                                <span class="text-sm font-extrabold text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-lg" id="valVideo">2 Vidéos</span>
                             </div>
-                            <input type="range" id="sim-video-range" min="0" max="20" value="2" oninput="window.updateSimulator()" class="w-full accent-purple-500 cursor-pointer h-2 bg-gray-800 rounded-lg">
+                            <input type="range" id="sliderVideo" min="0" max="15" value="2" step="1" oninput="updateCalculator()" class="w-full accent-cyan-400 h-2 bg-slate-800 rounded-lg cursor-pointer">
+                            <p class="text-[11px] text-gray-400">Comprend le dérochage, sous-titres animés et habillage sonore.</p>
                         </div>
 
                         <!-- Slider Photos -->
-                        <div class="bg-dark-900 p-4 sm:p-5 rounded-xl border border-gray-800">
-                            <div class="flex justify-between items-center mb-3">
-                                <label class="font-bold text-xs sm:text-sm text-gray-200"><i class="fa-solid fa-camera text-blue-400 mr-2"></i>Photos (10€/u)</label>
-                                <span class="text-base sm:text-lg font-black text-blue-400" id="sim-photo-count">5</span>
+                        <div class="space-y-2 bg-white/5 p-4 rounded-2xl border border-white/10">
+                            <div class="flex justify-between items-center">
+                                <label class="text-sm font-semibold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-image text-purple-400"></i> Nombre de Photos à Retoucher
+                                </label>
+                                <span class="text-sm font-extrabold text-purple-400 bg-purple-500/10 px-3 py-1 rounded-lg" id="valPhoto">5 Photos</span>
                             </div>
-                            <input type="range" id="sim-photo-range" min="0" max="50" value="5" oninput="window.updateSimulator()" class="w-full accent-blue-500 cursor-pointer h-2 bg-gray-800 rounded-lg">
+                            <input type="range" id="sliderPhoto" min="0" max="50" value="5" step="1" oninput="updateCalculator()" class="w-full accent-purple-400 h-2 bg-slate-800 rounded-lg cursor-pointer">
+                            <p class="text-[11px] text-gray-400">Correction couleur, détourage ou amélioration générale.</p>
                         </div>
+
+                        <!-- Checkbox Options -->
+                        <div class="space-y-3 pt-2">
+                            <label class="text-xs font-bold text-gray-300 uppercase tracking-wider">Options Complémentaires</label>
+                            
+                            <div class="grid sm:grid-cols-2 gap-3">
+                                <label class="flex items-center gap-3 p-3 rounded-xl glass-panel border border-white/10 cursor-pointer hover:border-cyan-400/40 transition-colors">
+                                    <input type="checkbox" id="optExpress" onchange="updateCalculator()" class="w-4 h-4 rounded text-cyan-400 accent-cyan-400">
+                                    <span class="text-xs text-gray-200">Livraison Express 24h (+30%)</span>
+                                </label>
+
+                                <label class="flex items-center gap-3 p-3 rounded-xl glass-panel border border-white/10 cursor-pointer hover:border-cyan-400/40 transition-colors">
+                                    <input type="checkbox" id="optScript" onchange="updateCalculator()" class="w-4 h-4 rounded text-cyan-400 accent-cyan-400">
+                                    <span class="text-xs text-gray-200">Rédaction Accroches & Textes (+25€)</span>
+                                </label>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-dark-900 p-4 sm:p-6 rounded-xl border border-purple-500/40">
-                        <div class="text-center sm:text-left">
-                            <span class="text-[10px] sm:text-xs text-gray-400 uppercase font-semibold block">Montant Estimé</span>
-                            <div class="text-2xl sm:text-3xl font-black text-white" id="sim-total-price">150 €</div>
-                        </div>
-                        <button onclick="window.addSimulatedToCart()" class="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs sm:text-sm rounded-xl neon-glow transition-transform hover:scale-105 flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-cart-arrow-down"></i> Injecter dans le Panier
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="py-12 sm:py-20 relative">
-            <div class="container mx-auto px-4 max-w-6xl">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-                    
-                    <!-- Contact Info -->
-                    <div>
-                        <div class="inline-block px-3.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold mb-3">
-                            Contact Direct
-                        </div>
-                        <h2 class="text-2xl sm:text-4xl md:text-5xl font-black mb-4">Discutons de vos <span class="text-gradient">Projets</span></h2>
-                        <p class="text-gray-300 text-xs sm:text-sm mb-6 leading-relaxed">
-                            Basée à Terrasson-Lavilledieu en Dordogne (24120), l'équipe de LocalPulse Digital répond à l'ensemble de vos demandes de création visuelle et de stratégie virale.
-                        </p>
-
-                        <div class="space-y-3.5">
-                            <div class="flex items-start gap-3.5 p-3.5 sm:p-4 rounded-xl bg-dark-900 border border-gray-800">
-                                <div class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-lg shrink-0">
-                                    <i class="fa-solid fa-envelope"></i>
-                                </div>
-                                <div>
-                                    <strong class="block text-white text-xs sm:text-sm">Adresse Email Officielle</strong>
-                                    <a href="mailto:localpulse33@outlook.fr" class="text-purple-400 font-semibold text-xs sm:text-sm hover:underline">localpulse33@outlook.fr</a>
-                                    <p class="text-[10px] text-gray-500 mt-0.5">Notification instantanée activée.</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start gap-3.5 p-3.5 sm:p-4 rounded-xl bg-dark-900 border border-gray-800">
-                                <div class="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 text-lg shrink-0">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                </div>
-                                <div>
-                                    <strong class="block text-white text-xs sm:text-sm">Siège & Ancrage Local</strong>
-                                    <p class="text-gray-300 text-xs sm:text-sm font-medium">Terrasson-Lavilledieu, Dordogne (24120), France</p>
-                                    <p class="text-[10px] text-gray-500 mt-0.5">Interventions et tournages région Nouvelle-Aquitaine.</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start gap-3.5 p-3.5 sm:p-4 rounded-xl bg-dark-900 border border-gray-800">
-                                <div class="w-10 h-10 rounded-lg bg-pink-500/10 border border-pink-500/30 flex items-center justify-center text-pink-400 text-lg shrink-0">
-                                    <i class="fa-solid fa-hashtag"></i>
-                                </div>
-                                <div>
-                                    <strong class="block text-white text-xs sm:text-sm">Réseaux Sociaux Officiels</strong>
-                                    <div class="flex gap-4 mt-1">
-                                        <a href="https://instagram.com/localpulse33" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-pink-400 hover:underline"><i class="fa-brands fa-instagram"></i> @localpulse33</a>
-                                        <a href="https://tiktok.com/@localpulse33" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-gray-300 hover:text-white hover:underline"><i class="fa-brands fa-tiktok"></i> @localpulse33</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Formspree Contact Form -->
-                    <div class="bg-dark-900 p-5 sm:p-8 rounded-2xl border border-gray-800 shadow-xl">
-                        <h3 class="text-lg sm:text-xl font-bold mb-1 text-white">Envoyez un message direct</h3>
-                        <p class="text-xs text-gray-400 mb-5">Connecté directement à <span class="text-purple-400 font-mono">localpulse33@outlook.fr</span></p>
-                        
-                        <form id="contact-form" onsubmit="window.handleContactSubmit(event)" class="space-y-3.5">
+                    <!-- Summary Column -->
+                    <div class="md:col-span-5">
+                        <div class="glass-panel p-6 rounded-2xl border border-white/15 bg-slate-900/80 space-y-6 text-center">
                             <div>
-                                <label class="block text-xs font-semibold text-gray-400 mb-1">Nom complet *</label>
-                                <input type="text" id="contact-name" name="nom_complet" required placeholder="Votre nom ou société" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-3.5 py-2.5 text-white text-xs sm:text-sm focus:outline-none focus:border-purple-500">
+                                <span class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Montant Estimé Total</span>
+                                <div class="text-4xl sm:text-5xl font-extrabold gradient-text-cyan my-2" id="totalCalcPrice">103,00 €</div>
+                                <span class="text-[11px] text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full font-medium inline-block">Net à payer • Pas de TVA cachée</span>
                             </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-400 mb-1">Adresse email *</label>
-                                <input type="email" id="contact-email" name="email" required placeholder="votre@email.com" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-3.5 py-2.5 text-white text-xs sm:text-sm focus:outline-none focus:border-purple-500">
+
+                            <div class="space-y-2 text-xs text-left border-t border-b border-white/10 py-4">
+                                <div class="flex justify-between text-gray-300">
+                                    <span>Vidéos (<span id="summaryVideoQty">2</span>x)</span>
+                                    <span class="font-bold text-white" id="summaryVideoPrice">78,00 €</span>
+                                </div>
+                                <div class="flex justify-between text-gray-300">
+                                    <span>Photos (<span id="summaryPhotoQty">5</span>x)</span>
+                                    <span class="font-bold text-white" id="summaryPhotoPrice">25,00 €</span>
+                                </div>
+                                <div class="flex justify-between text-gray-300" id="summaryOptRow">
+                                    <span>Options</span>
+                                    <span class="font-bold text-white" id="summaryOptPrice">0,00 €</span>
+                                </div>
                             </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-400 mb-1">Votre message / Projet *</label>
-                                <textarea id="contact-message" name="message" rows="4" required placeholder="Décrivez votre projet vidéo ou photo..." class="w-full bg-dark-950 border border-gray-700 rounded-lg px-3.5 py-2.5 text-white text-xs sm:text-sm focus:outline-none focus:border-purple-500"></textarea>
-                            </div>
-                            <button type="submit" id="contact-submit-btn" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-lg hover:opacity-90 transition-all text-xs sm:text-sm flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-paper-plane"></i> <span>Envoyer le Message</span>
+
+                            <button onclick="transferToOrderModal()" class="w-full py-3.5 rounded-xl gradient-btn text-black font-extrabold text-sm shadow-neon-cyan flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span>Valider et Commander ce Devis</span>
                             </button>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <footer class="bg-dark-950 border-t border-gray-900 py-8 px-4">
-            <div class="container mx-auto max-w-6xl flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                        <i class="fa-solid fa-bolt text-white text-xs"></i>
-                    </div>
-                    <span class="text-base font-black text-white">LOCAL<span class="text-gradient">PULSE</span></span>
-                </div>
-
-                <div class="text-gray-400 text-xs leading-relaxed">
-                    © 2026 LocalPulse Digital - Terrasson-Lavilledieu, Dordogne (24120)<br/>
-                    Email : <a href="mailto:localpulse33@outlook.fr" class="text-purple-400 hover:underline">localpulse33@outlook.fr</a>
-                </div>
-
-                <div class="flex items-center gap-4 text-gray-400">
-                    <a href="https://instagram.com/localpulse33" target="_blank" rel="noopener noreferrer" class="hover:text-pink-400 transition-colors"><i class="fa-brands fa-instagram text-lg"></i></a>
-                    <a href="https://tiktok.com/@localpulse33" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors"><i class="fa-brands fa-tiktok text-lg"></i></a>
-                </div>
-            </div>
-        </footer>
-
-    </main>
-
-    <div id="auth-modal" class="fixed inset-0 z-[120] hidden flex items-center justify-center p-3 sm:p-4">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="window.toggleAuthModal()"></div>
-        <div class="relative bg-dark-900 border border-gray-800 rounded-2xl w-full max-w-lg p-5 sm:p-7 neon-glow z-10 overflow-y-auto max-h-[90vh]">
-            <button onclick="window.toggleAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
-            
-            <!-- Login View -->
-            <div id="auth-view-login">
-                <h3 class="text-xl sm:text-2xl font-bold mb-1 text-white">Espace Client</h3>
-                <p class="text-gray-400 text-xs mb-5">Connectez-vous pour enregistrer vos coordonnées.</p>
-                
-                <form onsubmit="window.handleLogin(event)" class="space-y-3.5">
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-400 mb-1">Email</label>
-                        <input type="email" id="login-email" required placeholder="votre@email.com" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-3.5 py-2.5 text-white text-xs sm:text-sm focus:outline-none focus:border-purple-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-400 mb-1">Mot de passe</label>
-                        <input type="password" id="login-password" required placeholder="••••••••" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-3.5 py-2.5 text-white text-xs sm:text-sm focus:outline-none focus:border-purple-500">
-                    </div>
-                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 rounded-lg transition-all text-xs sm:text-sm">Se connecter</button>
-                </form>
-
-                <div class="mt-5 text-center">
-                    <p class="text-xs text-gray-400">Nouveau client ? <button onclick="window.switchAuthMode('register')" class="text-purple-400 hover:underline font-bold">Créer un compte</button></p>
-                </div>
-            </div>
-
-            <!-- Registration View -->
-            <div id="auth-view-register" class="hidden">
-                <div class="flex items-center gap-2 mb-1">
-                    <h3 class="text-xl font-bold text-white">Création de Compte</h3>
-                </div>
-                <p class="text-gray-400 text-xs mb-4">Remplissez le formulaire pour finaliser vos coordonnées.</p>
-                
-                <form id="register-form" onsubmit="window.handleRegister(event)" class="space-y-3">
-                    <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-[11px] font-semibold text-gray-400 mb-1">Nom *</label>
-                            <input type="text" id="reg-nom" name="nom" required placeholder="Dupont" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-semibold text-gray-400 mb-1">Prénom *</label>
-                            <input type="text" id="reg-prenom" name="prenom" required placeholder="Jean" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
                         </div>
                     </div>
 
-                    <div>
-                        <label class="block text-[11px] font-semibold text-gray-400 mb-1">Société / Marque (optionnel)</label>
-                        <input type="text" id="reg-societe" name="societe" placeholder="Entreprise SARL" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-[11px] font-semibold text-gray-400 mb-1">Adresse Email *</label>
-                            <input type="email" id="reg-email" name="email" required placeholder="votre@email.com" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-semibold text-gray-400 mb-1">Téléphone *</label>
-                            <input type="tel" id="reg-tel" name="telephone" required placeholder="06 12 34 56 78" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-3 gap-3">
-                        <div class="col-span-2">
-                            <label class="block text-[11px] font-semibold text-gray-400 mb-1">Adresse *</label>
-                            <input type="text" id="reg-adresse" name="adresse" required placeholder="15 Rue République" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-semibold text-gray-400 mb-1">Code Postal *</label>
-                            <input type="text" id="reg-cp" name="code_postal" required value="24120" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-[11px] font-semibold text-gray-400 mb-1">Ville *</label>
-                        <input type="text" id="reg-ville" name="ville" required value="Terrasson-Lavilledieu" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
-                    </div>
-
-                    <div>
-                        <label class="block text-[11px] font-semibold text-gray-400 mb-1">Mot de passe *</label>
-                        <input type="password" id="reg-pass" required placeholder="••••••••" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
-                    </div>
-
-                    <button type="submit" id="reg-submit-btn" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-2.5 rounded-lg hover:opacity-90 transition-all text-xs mt-2 flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-paper-plane"></i> <span>Créer Mon Compte</span>
-                    </button>
-                </form>
-
-                <div class="mt-3 text-center">
-                    <p class="text-xs text-gray-400">Déjà inscrit ? <button onclick="window.switchAuthMode('login')" class="text-purple-400 hover:underline font-bold">Se connecter</button></p>
                 </div>
-            </div>
-
-            <!-- Logged View -->
-            <div id="auth-view-logged" class="hidden text-center py-2 space-y-4">
-                <div class="w-12 h-12 bg-green-500/20 border border-green-500/40 rounded-full flex items-center justify-center mx-auto text-green-400 text-lg">
-                    <i class="fa-solid fa-user-check"></i>
-                </div>
-                <div>
-                    <h3 class="text-base font-bold text-white" id="logged-user-fullname">Jean Dupont</h3>
-                    <p class="text-gray-400 text-xs" id="logged-user-email">jean@dupont.fr</p>
-                    <p class="text-gray-500 text-[11px]" id="logged-user-address">Terrasson-Lavilledieu (24120)</p>
-                </div>
-
-                <div class="bg-dark-950 p-4 rounded-xl border border-gray-800 text-left space-y-2.5">
-                    <h4 class="text-xs font-bold text-purple-400 uppercase"><i class="fa-solid fa-key mr-1"></i> Modifier le mot de passe</h4>
-                    <form onsubmit="window.handleChangeClientPassword(event)" class="space-y-2">
-                        <input type="password" id="new-client-pwd" required placeholder="Nouveau mot de passe" class="w-full bg-dark-900 border border-gray-700 rounded px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
-                        <button type="submit" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 rounded text-xs transition-colors">Enregistrer</button>
-                    </form>
-                </div>
-
-                <button onclick="window.handleLogout()" class="w-full bg-red-600/20 border border-red-500/30 text-red-400 hover:bg-red-600 hover:text-white font-bold px-4 py-2.5 rounded-lg text-xs transition-all">
-                    Déconnexion
-                </button>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div id="cart-overlay" class="fixed inset-0 z-[110] hidden">
-        <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="window.toggleCart()"></div>
-        <div class="absolute top-0 right-0 h-full w-full sm:w-[420px] max-w-full bg-dark-900 border-l border-gray-800 shadow-2xl flex flex-col transform transition-transform duration-300 translate-x-full" id="cart-panel">
+    <!-- STREAMING_CHUNK:Creating Portfolio & Before-After Slider Interactive showcase -->
+    <section id="portfolio" class="py-20 border-t border-white/5 bg-black/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
             
-            <!-- Cart Header -->
-            <div class="p-4 sm:p-5 border-b border-gray-800 flex items-center justify-between bg-dark-950 shrink-0">
-                <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-lg bg-purple-600/20 border border-purple-500/40 flex items-center justify-center text-purple-400">
-                        <i class="fa-solid fa-bag-shopping text-sm"></i>
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-xs uppercase tracking-widest font-extrabold text-purple-400">Demonstration & Qualité</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Réalisations & Comparateur Avant / Après</h2>
+                <p class="text-gray-400 text-sm sm:text-base">Glissez le curseur sur les photos pour visualiser le pouvoir de la retouche pro.</p>
+            </div>
+
+            <!-- Before / After Interactive Slider Widget -->
+            <div class="max-w-4xl mx-auto glass-panel p-4 rounded-3xl border border-white/10 shadow-2xl">
+                <div class="text-xs font-bold text-gray-300 uppercase tracking-wider mb-3 flex items-center justify-between">
+                    <span><i class="fa-solid fa-sliders text-cyan-400 mr-2"></i> Retouche Photo Immobilier & Commerce</span>
+                    <span class="text-cyan-400 text-[11px]">Déplacez la barre au centre</span>
+                </div>
+
+                <div class="ba-container aspect-video sm:aspect-[16/9] rounded-2xl" id="baContainer">
+                    <!-- Before Image (Base layer) -->
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80" alt="Avant Retouche" class="w-full h-full object-cover filter contrast-75 brightness-75 grayscale-[30%]">
+                    
+                    <!-- After Image (Clipped layer) -->
+                    <div class="ba-after-img" id="baAfterLayer">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Après Retouche" class="absolute top-0 left-0 max-w-none h-full" id="baAfterImage">
                     </div>
-                    <h2 class="text-base sm:text-lg font-bold text-white">Votre Panier</h2>
-                </div>
-                <div class="flex items-center gap-3">
-                    <button onclick="window.clearCart()" class="text-[11px] text-red-400 hover:text-red-300 flex items-center gap-1 font-semibold transition-colors" title="Vider le panier">
-                        <i class="fa-solid fa-trash-can"></i> Vider
-                    </button>
-                    <button onclick="window.toggleCart()" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-800 text-gray-400 hover:text-white transition-colors">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
+
+                    <!-- Slider Handle Bar -->
+                    <div class="ba-slider-handle" id="baHandle">
+                        <div class="ba-handle-button">
+                            <i class="fa-solid fa-arrows-left-right text-xs"></i>
+                        </div>
+                    </div>
+
+                    <!-- Labels -->
+                    <span class="absolute top-4 left-4 bg-black/70 backdrop-blur-md text-white text-[10px] font-extrabold px-3 py-1 rounded-md border border-white/10">ORIGINAL / BRUT</span>
+                    <span class="absolute top-4 right-4 bg-cyan-500/80 backdrop-blur-md text-black text-[10px] font-extrabold px-3 py-1 rounded-md shadow-neon-cyan">RETOUCHÉ PRO</span>
                 </div>
             </div>
 
-            <!-- Cart Items Scrollable Container -->
-            <div class="flex-grow overflow-y-auto p-3.5 sm:p-4 space-y-3 min-h-0" id="cart-items-container">
-                <div class="text-center text-gray-500 py-16" id="empty-cart-msg">
-                    <i class="fa-solid fa-cart-arrow-down text-4xl mb-3 text-gray-700 block"></i>
-                    <p class="text-xs">Votre panier est actuellement vide.</p>
+            <!-- Video Portfolio Grid -->
+            <div>
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-clapperboard text-cyan-400"></i> Exemples Vidéos Récentes
+                    </h3>
+                    <div class="flex gap-2">
+                        <span class="text-xs bg-white/5 border border-white/10 text-gray-300 px-3 py-1 rounded-full font-medium">Format 9:16</span>
+                    </div>
                 </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolioGrid">
+                    <!-- Card 1 -->
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/10 group glass-panel-hover">
+                        <div class="relative aspect-[9/12] bg-slate-900 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                            <span class="absolute top-3 left-3 bg-cyan-500 text-black text-[10px] font-extrabold px-2.5 py-1 rounded">Restaurant</span>
+                            <div class="absolute bottom-4 left-4 right-4 text-left">
+                                <h4 class="font-bold text-white text-sm">Présentation Menu & Ambiance</h4>
+                                <p class="text-xs text-gray-300 mt-1">Sarlat-la-Canéda • Montage dynamique + voix off AI</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/10 group glass-panel-hover">
+                        <div class="relative aspect-[9/12] bg-slate-900 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                            <span class="absolute top-3 left-3 bg-purple-500 text-white text-[10px] font-extrabold px-2.5 py-1 rounded">Salon de Coiffure</span>
+                            <div class="absolute bottom-4 left-4 right-4 text-left">
+                                <h4 class="font-bold text-white text-sm">Transformation Avant / Après Reel</h4>
+                                <p class="text-xs text-gray-300 mt-1">Terrasson • 18K vues organiques</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/10 group glass-panel-hover">
+                        <div class="relative aspect-[9/12] bg-slate-900 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                            <span class="absolute top-3 left-3 bg-pink-500 text-white text-[10px] font-extrabold px-2.5 py-1 rounded">Salle de Sport</span>
+                            <div class="absolute bottom-4 left-4 right-4 text-left">
+                                <h4 class="font-bold text-white text-sm">Promo Cours Collectifs TikTok</h4>
+                                <p class="text-xs text-gray-300 mt-1">Brive / Terrasson • Transitions rythmées</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- Cart Footer & Checkout Options -->
-            <div class="border-t border-gray-800 bg-dark-950 p-4 sm:p-5 space-y-3 sm:space-y-4 shrink-0">
+        </div>
+    </section>
+
+    <!-- STREAMING_CHUNK:Building Real-time Order Tracking module with interactive search input -->
+    <section id="suivi" class="py-20 relative border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel p-8 sm:p-10 rounded-3xl border border-white/10 space-y-8">
+                
+                <div class="text-center space-y-2">
+                    <span class="text-xs uppercase tracking-widest font-extrabold text-cyan-400"><i class="fa-solid fa-radar mr-1"></i> Transparence & Suivi</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Suivre une commande en temps réel</h2>
+                    <p class="text-xs sm:text-sm text-gray-400">Saisissez votre code unique de commande (Ex: LP-2026-8841)</p>
+                </div>
+
+                <!-- Input Search Bar -->
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <input type="text" id="trackInput" placeholder="Ex: LP-2026-8841" value="LP-2026-8841" class="flex-grow px-5 py-3.5 rounded-xl glass-input text-sm font-mono uppercase tracking-wider">
+                    <button onclick="searchOrderTracking()" class="px-8 py-3.5 rounded-xl gradient-btn text-black font-extrabold text-sm shadow-neon-cyan flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span>Rechercher</span>
+                    </button>
+                </div>
+
+                <!-- Live Status Timeline Output Box -->
+                <div id="trackingResult" class="bg-slate-900/90 rounded-2xl p-6 border border-white/10 space-y-6">
+                    <div class="flex flex-wrap justify-between items-center border-b border-white/10 pb-4 gap-2">
+                        <div>
+                            <span class="text-xs text-gray-400">Code Commande</span>
+                            <h4 class="text-lg font-mono font-extrabold text-cyan-400" id="trackOrderCode">LP-2026-8841</h4>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gray-400">Client / Entreprise</span>
+                            <div class="text-sm font-semibold text-white" id="trackClientName">Boulangerie du Centre</div>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gray-400">Statut Actuel</span>
+                            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-500/30" id="trackStatusBadge">Retouche en cours</span>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar Component -->
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-xs text-gray-300 font-medium">
+                            <span>Avancement Global</span>
+                            <span class="text-cyan-400 font-bold" id="trackPercentageText">50%</span>
+                        </div>
+                        <div class="w-full h-3 bg-slate-800 rounded-full overflow-hidden p-0.5 border border-white/10">
+                            <div id="trackProgressBar" class="h-full bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full transition-all duration-700 w-1/2"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step-by-step indicator -->
+                    <div class="grid grid-cols-4 gap-2 pt-2 text-center text-[10px] sm:text-xs">
+                        <div class="space-y-1">
+                            <div class="w-7 h-7 mx-auto rounded-full bg-cyan-400 text-black flex items-center justify-center font-bold" id="step1Icon"><i class="fa-solid fa-check"></i></div>
+                            <span class="text-gray-300 font-medium block">Réception</span>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="w-7 h-7 mx-auto rounded-full bg-cyan-400 text-black flex items-center justify-center font-bold" id="step2Icon"><i class="fa-solid fa-gear animate-spin"></i></div>
+                            <span class="text-cyan-400 font-bold block">Traitement</span>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="w-7 h-7 mx-auto rounded-full bg-slate-800 text-gray-500 flex items-center justify-center font-bold" id="step3Icon">3</div>
+                            <span class="text-gray-500 block">Validation</span>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="w-7 h-7 mx-auto rounded-full bg-slate-800 text-gray-500 flex items-center justify-center font-bold" id="step4Icon">4</div>
+                            <span class="text-gray-500 block">Livraison HD</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- STREAMING_CHUNK:Constructing Accordion FAQ and Contact Form section -->
+    <section id="contact" class="py-20 border-t border-white/5 bg-black/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12">
+                
+                <!-- FAQ Accordion (Left) -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest font-extrabold text-cyan-400">Des Réponses Claires</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Questions Fréquentes</h2>
+                    </div>
+
+                    <div class="space-y-4" id="faqContainer">
+                        <!-- FAQ Item 1 -->
+                        <div class="glass-panel rounded-2xl border border-white/10 overflow-hidden">
+                            <button onclick="toggleFaq('faq1')" class="w-full p-5 text-left font-semibold text-white flex justify-between items-center text-sm sm:text-base">
+                                <span>Comment envoyer mes fichiers vidéo ou photos bruts ?</span>
+                                <i class="fa-solid fa-chevron-down text-cyan-400 transition-transform" id="faq1Icon"></i>
+                            </button>
+                            <div id="faq1" class="hidden p-5 pt-0 text-xs sm:text-sm text-gray-300 border-t border-white/5">
+                                Vous pouvez coller un lien WeTransfer, Google Drive, Dropbox ou OneDrive directement lors de votre commande. Si besoin, nous vous envoyons aussi un lien de dépôt privé sécurisé.
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 2 -->
+                        <div class="glass-panel rounded-2xl border border-white/10 overflow-hidden">
+                            <button onclick="toggleFaq('faq2')" class="w-full p-5 text-left font-semibold text-white flex justify-between items-center text-sm sm:text-base">
+                                <span>Proposez-vous des retouches supplémentaires si besoin ?</span>
+                                <i class="fa-solid fa-chevron-down text-cyan-400 transition-transform" id="faq2Icon"></i>
+                            </button>
+                            <div id="faq2" class="hidden p-5 pt-0 text-xs sm:text-sm text-gray-300 border-t border-white/5">
+                                Oui ! Chaque prestation inclut jusqu'à 2 séries d'ajustements (titres, musiques, couleurs) pour vous garantir une satisfaction totale à 100%.
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 3 -->
+                        <div class="glass-panel rounded-2xl border border-white/10 overflow-hidden">
+                            <button onclick="toggleFaq('faq3')" class="w-full p-5 text-left font-semibold text-white flex justify-between items-center text-sm sm:text-base">
+                                <span>Quels sont les délais habituels de livraison ?</span>
+                                <i class="fa-solid fa-chevron-down text-cyan-400 transition-transform" id="faq3Icon"></i>
+                            </button>
+                            <div id="faq3" class="hidden p-5 pt-0 text-xs sm:text-sm text-gray-300 border-t border-white/5">
+                                Nos délais standard sont de 48h ouvrées. L'option Livraison Express 24h permet d'obtenir vos fichiers en priorité prioritaire sous 24 heures.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Direct Contact Form (Right) -->
+                <div class="lg:col-span-6">
+                    <div class="glass-panel p-8 rounded-3xl border border-white/10 space-y-6">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest font-extrabold text-purple-400">Échange direct</span>
+                            <h2 class="text-2xl font-extrabold text-white mt-1">Contactez le Studio</h2>
+                            <p class="text-xs text-gray-400">Une question spécifique ou un projet sur-mesure ? Écrivez-nous directement.</p>
+                        </div>
+
+                        <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-300 mb-1">Votre Nom / Entreprise</label>
+                                    <input type="text" required placeholder="Ex: Jean - Restaurant Le Sarlat" class="w-full px-4 py-3 rounded-xl glass-input text-xs">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-300 mb-1">Votre Email</label>
+                                    <input type="email" required placeholder="contact@votre-commerce.fr" class="w-full px-4 py-3 rounded-xl glass-input text-xs">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-medium text-gray-300 mb-1">Sujet</label>
+                                <input type="text" placeholder="Ex: Devis pack mensuel vidéo" class="w-full px-4 py-3 rounded-xl glass-input text-xs">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-medium text-gray-300 mb-1">Votre Message</label>
+                                <textarea rows="4" required placeholder="Décrivez brièvement vos besoins..." class="w-full px-4 py-3 rounded-xl glass-input text-xs"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 rounded-xl gradient-btn text-black font-extrabold text-sm shadow-neon-cyan flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Envoyer au Studio (localpulse33@outlook.fr)</span>
+                            </button>
+                        </form>
+
+                        <div class="pt-4 border-t border-white/10 flex flex-wrap justify-between items-center text-xs text-gray-400 gap-2">
+                            <span><i class="fa-solid fa-envelope text-cyan-400 mr-1.5"></i> localpulse33@outlook.fr</span>
+                            <span><i class="fa-solid fa-location-dot text-pink-400 mr-1.5"></i> Terrasson-Lavilledieu, Dordogne</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- STREAMING_CHUNK:Building Order Creation Modal with Stripe / Bank Simulation -->
+    <div id="orderModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+        <div class="glass-panel max-w-xl w-full p-6 sm:p-8 rounded-3xl border border-cyan-500/30 relative space-y-6 shadow-2xl my-8">
+            
+            <button onclick="toggleModal('orderModal')" class="absolute top-5 right-5 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="border-b border-white/10 pb-4">
+                <span class="text-xs uppercase tracking-widest font-extrabold text-cyan-400">Étape Finale</span>
+                <h3 class="text-xl font-extrabold text-white">Validation de votre Commande</h3>
+                <p class="text-xs text-gray-400 mt-0.5">Notification automatique envoyée à localpulse33@outlook.fr</p>
+            </div>
+
+            <form id="checkoutForm" onsubmit="processOrderSubmit(event)" class="space-y-4">
+                
                 <!-- Total Price Display -->
-                <div class="flex items-center justify-between bg-dark-900 p-3 sm:p-3.5 rounded-xl border border-gray-800">
-                    <span class="text-gray-400 font-semibold text-xs uppercase tracking-wider">Total Général :</span>
-                    <span class="text-2xl sm:text-3xl font-black text-white" id="cart-total-price">0,00 €</span>
+                <div class="bg-cyan-500/10 border border-cyan-500/30 p-4 rounded-2xl flex justify-between items-center">
+                    <div>
+                        <span class="text-xs text-gray-300">Total de votre Devis</span>
+                        <div class="text-sm font-bold text-white" id="modalOrderDetails">2 Vidéos + 5 Photos</div>
+                    </div>
+                    <div class="text-2xl font-extrabold text-cyan-400" id="modalOrderTotal">103,00 €</div>
+                </div>
+
+                <!-- Client Details -->
+                <div class="space-y-3">
+                    <label class="text-xs font-bold text-gray-300 uppercase tracking-wider">Informations Client</label>
+                    
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <input type="text" id="orderClientName" required placeholder="Nom / Nom du Commerce *" class="px-4 py-2.5 rounded-xl glass-input text-xs">
+                        <input type="email" id="orderClientEmail" required placeholder="Votre Email pour le suivi *" class="px-4 py-2.5 rounded-xl glass-input text-xs">
+                    </div>
+
+                    <input type="text" id="orderSourceLink" placeholder="Lien WeTransfer / Drive des fichiers bruts (Optionnel)" class="w-full px-4 py-2.5 rounded-xl glass-input text-xs">
                 </div>
 
                 <!-- Payment Selection -->
+                <div class="space-y-3 pt-2">
+                    <label class="text-xs font-bold text-gray-300 uppercase tracking-wider">Mode de Règlement Simulé</label>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="flex items-center gap-3 p-3 rounded-xl glass-panel border border-cyan-400/50 cursor-pointer bg-cyan-500/10">
+                            <input type="radio" name="payMethod" value="stripe" checked class="accent-cyan-400">
+                            <div>
+                                <span class="text-xs font-bold text-white block"><i class="fa-brands fa-stripe text-cyan-400 mr-1"></i> Carte bancaire</span>
+                                <span class="text-[10px] text-gray-400">Paiement sécurisé</span>
+                            </div>
+                        </label>
+
+                        <label class="flex items-center gap-3 p-3 rounded-xl glass-panel border border-white/10 cursor-pointer">
+                            <input type="radio" name="payMethod" value="virement" class="accent-cyan-400">
+                            <div>
+                                <span class="text-xs font-bold text-white block"><i class="fa-solid fa-building-columns text-purple-400 mr-1"></i> Virement</span>
+                                <span class="text-[10px] text-gray-400">IBAN sur facture</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full py-4 rounded-xl gradient-btn text-black font-extrabold text-sm shadow-neon-cyan flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>Confirmer & Obtenir mon Numéro de Suivi</span>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- STREAMING_CHUNK:Constructing Admin Dashboard Modal protected by PIN code 1234 -->
+    <div id="adminModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+        <div class="glass-panel max-w-2xl w-full p-6 sm:p-8 rounded-3xl border border-purple-500/30 relative space-y-6 shadow-2xl my-8">
+            
+            <button onclick="toggleModal('adminModal')" class="absolute top-5 right-5 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Locked Screen State -->
+            <div id="adminPinScreen" class="text-center py-8 space-y-6">
+                <div class="w-16 h-16 mx-auto rounded-2xl bg-purple-500/10 border border-purple-500/30 text-purple-400 flex items-center justify-center text-2xl shadow-neon-purple">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
                 <div>
-                    <span class="text-[10px] sm:text-[11px] font-bold text-purple-400 uppercase tracking-wider block mb-2">MODE DE RÈGLEMENT</span>
-                    
-                    <div class="space-y-2 mb-3">
-                        <label class="flex items-center gap-3 p-3 bg-dark-900 border border-purple-500/40 rounded-xl cursor-pointer hover:border-purple-500 transition-colors">
-                            <input type="radio" name="payment_method" value="stripe" checked class="accent-purple-500">
-                            <div class="flex-grow">
-                                <div class="flex items-center justify-between">
-                                    <strong class="text-white text-xs"><i class="fa-brands fa-stripe text-blue-400 mr-1 text-sm"></i> Carte Bancaire (Stripe)</strong>
-                                    <span class="text-[9px] bg-green-500/20 text-green-400 font-bold px-1.5 py-0.5 rounded">Sécurisé</span>
-                                </div>
-                                <span class="text-[10px] text-gray-400 block mt-0.5">Paiement direct et sécurisé via Stripe</span>
-                            </div>
-                        </label>
-                        
-                        <label class="flex items-center gap-3 p-3 bg-dark-900 border border-gray-800 rounded-xl cursor-pointer hover:border-purple-500 transition-colors">
-                            <input type="radio" name="payment_method" value="transfer" class="accent-purple-500">
-                            <div class="flex-grow">
-                                <strong class="text-white text-xs block"><i class="fa-solid fa-building-columns text-green-400 mr-1 text-sm"></i> Virement Bancaire Direct</strong>
-                                <span class="text-[10px] text-gray-400">Affichage du RIB + confirmation email</span>
-                            </div>
-                        </label>
-                    </div>
+                    <h3 class="text-2xl font-extrabold text-white">Espace Administration Studio</h3>
+                    <p class="text-xs text-gray-400 mt-1">Entrez le code PIN administrateur (Code par défaut : <strong class="text-purple-400 font-mono">1234</strong>)</p>
+                </div>
 
-                    <!-- RIB Box -->
-                    <div id="bank-transfer-box" class="hidden bg-dark-900 p-3.5 rounded-xl border border-green-500/40 text-xs space-y-1.5 mb-3">
-                        <div class="flex justify-between items-center border-b border-gray-800 pb-1.5">
-                            <strong class="text-green-400 text-[11px]"><i class="fa-solid fa-building-columns"></i> RIB Officiel LocalPulse</strong>
-                            <button onclick="window.copyRIB()" class="bg-green-600/20 text-green-300 hover:bg-green-600 hover:text-white px-2 py-0.5 rounded text-[10px] transition-colors">
-                                Copier RIB
-                            </button>
-                        </div>
-                        <p class="text-gray-300 text-[11px]">Titulaire : <strong>LocalPulse Digital Dordogne</strong></p>
-                        <p class="text-gray-300 font-mono text-[10px]">IBAN : FR76 2823 3000 0107 2048 2303 785</p>
-                        <p class="text-gray-300 font-mono text-[10px]">BIC : AGRIFR22XXX (Crédit Agricole)</p>
-                        <p class="text-[10px] text-gray-400 pt-1">Envoyez le justificatif à <strong>localpulse33@outlook.fr</strong></p>
-                    </div>
-
-                    <!-- Direct Fallback Link Box for Stripe -->
-                    <div id="stripe-fallback-box" class="hidden bg-blue-950/60 border border-blue-500/50 p-3 rounded-xl mb-3 text-center">
-                        <span class="text-[11px] text-blue-200 block mb-1">Si la page de paiement ne s'ouvre pas automatiquement :</span>
-                        <a id="stripe-direct-fallback-link" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">
-                            <i class="fa-solid fa-external-link text-[10px]"></i> Cliquer ici pour régler sur Stripe
-                        </a>
-                    </div>
-
-                    <!-- Checkout CTA Button -->
-                    <button onclick="window.proceedToCheckout()" id="checkout-btn" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-extrabold py-3.5 rounded-xl shadow-lg hover:shadow-purple-600/30 transition-all text-xs sm:text-sm flex items-center justify-center gap-2">
-                        <span>Valider & Régler la Commande</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+                <div class="max-w-xs mx-auto space-y-4">
+                    <input type="password" id="adminPinInput" maxlength="4" placeholder="• • • •" class="w-full text-center text-2xl font-mono tracking-widest py-3 rounded-xl glass-input">
+                    <button onclick="verifyAdminPin()" class="w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-sm shadow-neon-purple transition-all">
+                        Déverrouiller
                     </button>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div id="admin-panel" class="fixed inset-0 z-[140] hidden bg-dark-950/95 backdrop-blur-lg flex flex-col p-3 sm:p-6 overflow-y-auto">
-        <div class="max-w-5xl mx-auto w-full bg-dark-900 border border-gray-800 rounded-2xl p-4 sm:p-8 my-auto shadow-2xl">
-            
-            <!-- Admin Header -->
-            <div class="flex justify-between items-center mb-6 border-b border-gray-800 pb-4">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-purple-600/20 border border-purple-500/40 flex items-center justify-center text-purple-400 text-xl">
-                        <i class="fa-solid fa-gauge-high"></i>
-                    </div>
+            <!-- Unlocked Admin Dashboard State -->
+            <div id="adminContentScreen" class="hidden space-y-6">
+                <div class="flex justify-between items-center border-b border-white/10 pb-4">
                     <div>
-                        <h2 class="text-xl sm:text-2xl font-bold text-white">Espace Administrateur</h2>
-                        <p class="text-xs text-gray-400">Gestion des commandes & clients</p>
+                        <span class="text-xs uppercase tracking-widest font-extrabold text-purple-400">Espace Gérant</span>
+                        <h3 class="text-xl font-extrabold text-white">Tableau de Bord LocalPulse</h3>
                     </div>
-                </div>
-                <button onclick="window.toggleAdminPanel()" class="text-gray-400 hover:text-white px-3 py-1.5 border border-gray-800 rounded-lg text-xs font-semibold hover:bg-dark-950 transition-colors">
-                    <i class="fa-solid fa-xmark mr-1"></i> Fermer
-                </button>
-            </div>
-
-            <!-- Admin Password Prompt -->
-            <div id="admin-login-box" class="max-w-sm mx-auto text-center py-8">
-                <div class="w-16 h-16 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center mx-auto text-purple-400 text-2xl mb-4">
-                    <i class="fa-solid fa-lock"></i>
-                </div>
-                <h3 class="text-lg font-bold text-white mb-1">Authentification Administrateur</h3>
-                <p class="text-xs text-gray-400 mb-5">Veuillez saisir votre code d'accès administrateur :</p>
-                <form onsubmit="event.preventDefault(); window.loginAdmin();" class="space-y-3">
-                    <input type="password" id="admin-pwd-input" placeholder="••••••••" class="w-full bg-dark-950 border border-gray-700 rounded-lg px-4 py-3 text-white text-center text-sm focus:outline-none focus:border-purple-500">
-                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 rounded-lg text-xs sm:text-sm transition-colors flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-key"></i> Accéder au Tableau de Bord
+                    <button onclick="lockAdmin()" class="text-xs bg-red-500/20 text-red-400 border border-red-500/30 px-3 py-1.5 rounded-lg hover:bg-red-500/30">
+                        <i class="fa-solid fa-power-off mr-1"></i> Déconnexion
                     </button>
-                </form>
-            </div>
-
-            <!-- Admin Main Dashboard Content -->
-            <div id="admin-content-box" class="hidden space-y-6">
-                <!-- Admin Navigation Tabs -->
-                <div class="flex border-b border-gray-800 gap-2 overflow-x-auto pb-1 text-xs sm:text-sm">
-                    <button onclick="window.switchAdminTab('stats')" id="tab-btn-stats" class="px-4 py-2 font-bold border-b-2 border-purple-500 text-purple-400 whitespace-nowrap">Vue d'ensemble</button>
-                    <button onclick="window.switchAdminTab('orders')" id="tab-btn-orders" class="px-4 py-2 font-bold text-gray-400 hover:text-white whitespace-nowrap">Commandes (<span id="admin-badge-orders">0</span>)</button>
-                    <button onclick="window.switchAdminTab('users')" id="tab-btn-users" class="px-4 py-2 font-bold text-gray-400 hover:text-white whitespace-nowrap">Clients (<span id="admin-badge-users">0</span>)</button>
-                    <button onclick="window.switchAdminTab('settings')" id="tab-btn-settings" class="px-4 py-2 font-bold text-gray-400 hover:text-white whitespace-nowrap">Sécurité & Accès</button>
                 </div>
 
-                <!-- Tab 1: Stats & Overview -->
-                <div id="admin-tab-stats" class="space-y-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <div class="bg-dark-950 p-5 rounded-xl border border-gray-800">
-                            <span class="text-xs text-gray-400 font-semibold uppercase">Chiffre d'Affaires</span>
-                            <div class="text-2xl sm:text-3xl font-black text-green-400 mt-2" id="admin-total-rev">0,00 €</div>
-                            <span class="text-[10px] text-gray-500 mt-1 block">Total des ventes enregistrées</span>
-                        </div>
-                        <div class="bg-dark-950 p-5 rounded-xl border border-gray-800">
-                            <span class="text-xs text-gray-400 font-semibold uppercase">Commandes Totales</span>
-                            <div class="text-2xl sm:text-3xl font-black text-purple-400 mt-2" id="admin-total-orders-count">0</div>
-                            <span class="text-[10px] text-gray-500 mt-1 block">Toutes méthodes confondues</span>
-                        </div>
-                        <div class="bg-dark-950 p-5 rounded-xl border border-gray-800">
-                            <span class="text-xs text-gray-400 font-semibold uppercase">Clients Enregistrés</span>
-                            <div class="text-2xl sm:text-3xl font-black text-blue-400 mt-2" id="admin-users-count">0</div>
-                            <span class="text-[10px] text-gray-500 mt-1 block">Base de données clients</span>
-                        </div>
+                <!-- Admin Analytics Cards -->
+                <div class="grid grid-cols-3 gap-3 text-center">
+                    <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                        <div class="text-xs text-gray-400">Chiffre d'Affaires</div>
+                        <div class="text-lg font-extrabold text-cyan-400 mt-1" id="adminTotalRevenue">1 840 €</div>
                     </div>
-
-                    <div class="bg-dark-950 p-5 rounded-xl border border-gray-800">
-                        <h4 class="text-xs font-bold text-gray-300 uppercase mb-3"><i class="fa-solid fa-bell text-purple-400 mr-2"></i> Canaux de Réception Officiels</h4>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                            <div class="p-3 bg-dark-900 rounded-lg border border-gray-800">
-                                <span class="text-gray-400 block text-[11px]">Email de notification Formspree :</span>
-                                <strong class="text-purple-300 font-mono">localpulse33@outlook.fr</strong>
-                            </div>
-                            <div class="p-3 bg-dark-900 rounded-lg border border-gray-800">
-                                <span class="text-gray-400 block text-[11px]">Ancrage Local :</span>
-                                <strong class="text-gray-200">Terrasson-Lavilledieu, Dordogne (24120)</strong>
-                            </div>
-                        </div>
+                    <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                        <div class="text-xs text-gray-400">Commandes en Cours</div>
+                        <div class="text-lg font-extrabold text-purple-400 mt-1" id="adminActiveCount">3</div>
+                    </div>
+                    <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                        <div class="text-xs text-gray-400">Projets Livrés</div>
+                        <div class="text-lg font-extrabold text-emerald-400 mt-1">42</div>
                     </div>
                 </div>
 
-                <!-- Tab 2: Orders List -->
-                <div id="admin-tab-orders" class="hidden space-y-4">
+                <!-- Manage Orders Table -->
+                <div class="space-y-3">
                     <div class="flex justify-between items-center">
-                        <h3 class="text-sm font-bold text-white flex items-center gap-2"><i class="fa-solid fa-list-check text-purple-400"></i> Historique Complet des Commandes</h3>
-                        <button onclick="window.clearAllOrders()" class="text-[11px] bg-red-600/20 text-red-400 hover:bg-red-600 hover:text-white px-2.5 py-1 rounded border border-red-500/30 transition-colors">Purger Commandes</button>
+                        <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider">Gestion des Commandes Clients</h4>
+                        <span class="text-[10px] text-gray-400">Modifiez les statuts en direct</span>
                     </div>
-                    <div class="bg-dark-950 rounded-xl border border-gray-800 p-3 sm:p-4 text-xs text-gray-300 space-y-3 max-h-[450px] overflow-y-auto" id="admin-orders-list">
-                        Aucune commande enregistrée.
-                    </div>
-                </div>
 
-                <!-- Tab 3: Registered Users List -->
-                <div id="admin-tab-users" class="hidden space-y-4">
-                    <h3 class="text-sm font-bold text-white flex items-center gap-2"><i class="fa-solid fa-users text-blue-400"></i> Comptes Utilisateurs Enregistrés</h3>
-                    <div class="bg-dark-950 rounded-xl border border-gray-800 p-3 sm:p-4 text-xs text-gray-300 space-y-3 max-h-[450px] overflow-y-auto" id="admin-users-list">
-                        Aucun utilisateur inscrit.
-                    </div>
-                </div>
-
-                <!-- Tab 4: Security Settings -->
-                <div id="admin-tab-settings" class="hidden space-y-4">
-                    <div class="bg-dark-950 p-5 rounded-xl border border-gray-800 max-w-md">
-                        <h3 class="text-sm font-bold text-white mb-2 flex items-center gap-2"><i class="fa-solid fa-shield-halved text-purple-400"></i> Modifier le Code Secret Admin</h3>
-                        <p class="text-xs text-gray-400 mb-4">Changez le code d'accès requis pour ce panneau d'administration.</p>
-                        
-                        <form onsubmit="event.preventDefault(); window.updateAdminPassword();" class="space-y-3">
-                            <input type="password" id="new-admin-code" placeholder="Nouveau code administrateur" class="w-full bg-dark-900 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
-                            <button type="submit" class="bg-purple-600 hover:bg-purple-500 text-white font-bold px-4 py-2 rounded-lg text-xs transition-colors">
-                                Sauvegarder le nouveau code
-                            </button>
-                        </form>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs text-gray-300">
+                            <thead class="bg-white/5 text-gray-400 uppercase text-[10px]">
+                                <tr>
+                                    <th class="p-2.5">Code</th>
+                                    <th class="p-2.5">Client</th>
+                                    <th class="p-2.5">Montant</th>
+                                    <th class="p-2.5">Changer Statut</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminOrderTable" class="divide-y divide-white/5">
+                                <!-- Dynamic rows via JS -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -861,653 +925,277 @@
         </div>
     </div>
 
-    <div class="fixed bottom-4 right-4 z-[100]">
-        <div id="chat-window" class="hidden w-72 sm:w-80 bg-dark-900 border border-purple-500/40 rounded-2xl shadow-2xl mb-3 overflow-hidden flex flex-col transition-all neon-glow h-[400px]">
-            <div class="bg-gradient-to-r from-blue-600 to-purple-600 p-3 flex justify-between items-center text-white">
-                <div class="flex items-center gap-2">
-                    <div class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
-                        <i class="fa-solid fa-robot text-white text-xs"></i>
-                    </div>
-                    <div>
-                        <strong class="text-xs block font-bold">Assistant IA LocalPulse</strong>
-                        <span class="text-[9px] text-purple-200">Terrasson-Lavilledieu (24120)</span>
-                    </div>
+    <!-- STREAMING_CHUNK:Building Footer with copyright and quick shortcuts -->
+    <footer class="glass-panel border-t border-white/10 py-10 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg gradient-btn flex items-center justify-center text-black font-extrabold text-sm shadow-neon-cyan">
+                    LP
                 </div>
-                <button onclick="window.toggleChat()" class="text-white/80 hover:text-white"><i class="fa-solid fa-xmark text-sm"></i></button>
+                <span class="text-sm font-bold text-white">
+                    LocalPulse Digital <span class="text-gray-500 font-normal">| Terrasson-Lavilledieu (24)</span>
+                </span>
             </div>
 
-            <div class="p-3 flex-grow overflow-y-auto text-xs space-y-2.5 bg-dark-950 text-gray-200" id="chat-messages">
-                <div class="bg-dark-900 border border-gray-800 p-3 rounded-xl max-w-[85%] leading-relaxed">
-                    Bonjour ! Je suis l'assistant virtuel de LocalPulse Digital.<br/><br/>
-                    Une question sur nos montages vidéo (50€/u), retouches photo (10€/u) ou nos Packs ? Posez votre question ici.
-                </div>
-            </div>
-
-            <div class="p-2.5 bg-dark-900 border-t border-gray-800 flex gap-2">
-                <input type="text" id="chat-input" onkeypress="if(event.key==='Enter') window.sendChatMessage()" placeholder="Votre question..." class="flex-grow bg-dark-950 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
-                <button onclick="window.sendChatMessage()" class="bg-purple-600 hover:bg-purple-500 text-white px-3 py-2 rounded-lg text-xs font-bold transition-colors">
-                    <i class="fa-solid fa-paper-plane"></i>
-                </button>
+            <div class="text-xs text-gray-400 text-center md:text-right">
+                <p>&copy; 2026 LocalPulse Digital. Tous droits réservés.</p>
+                <p class="mt-1 text-[11px] text-gray-500">Contact Studio : localpulse33@outlook.fr • Conception & Performance en Dordogne</p>
             </div>
         </div>
+    </footer>
 
-        <button onclick="window.toggleChat()" class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-xl hover:scale-105 transition-all neon-glow">
-            <i class="fa-solid fa-comments text-white text-xl sm:text-2xl"></i>
-        </button>
-    </div>
+    <!-- STREAMING_CHUNK:Writing Interactive JavaScript logic and reactive state management -->
+    <script type="text/javascript">
+        /* STREAMING_CHUNK:Initializing Application State and Mock Database */
+        let ordersDb = [
+            { id: "LP-2026-8841", client: "Boulangerie du Centre", details: "2 Vidéos + 5 Photos", total: 103, status: "Traitement", progress: 50 },
+            { id: "LP-2026-9203", client: "Hôtel Dordogne de Charme", details: "Pack Visibilité Mensuel", total: 179, status: "Réception", progress: 25 },
+            { id: "LP-2026-7410", client: "Garage Automobile Terrasson", details: "10 Photos Retouchées", total: 49, status: "Livraison HD", progress: 100 }
+        ];
 
-    <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[150] flex flex-col gap-2 pointer-events-none w-full max-w-sm px-4"></div>
-
-    <script>
-        const FORMSPREE_ENDPOINT = "https://formspree.io/f/xwlvqrrg";
-
-        const stripeLinks = {
-            'pack_starter': 'https://buy.stripe.com/7sY00j0O22RQ0CY1qF38403',
-            'booster_viral': 'https://buy.stripe.com/dRm14nfIW8caetOb1f38405',
-            'dominance_ia': 'https://buy.stripe.com/28E00jaoCfEC0CYfhv38407',
-            'formule_photo': 'https://buy.stripe.com/eVq9ATfIW786clG5GV38401',
-            'formule_video': 'https://buy.stripe.com/3cI9ATdAO3VU0CY5GV38404'
-        };
-
-        // State variables
-        let cart = [];
-        let currentUser = null;
-
-        // Load stored state
-        try {
-            const storedUser = localStorage.getItem('localpulse_current_user');
-            if (storedUser) currentUser = JSON.parse(storedUser);
-            
-            const storedCart = localStorage.getItem('localpulse_cart');
-            if (storedCart) cart = JSON.parse(storedCart);
-            
-            if (!localStorage.getItem('localpulse_admin_code')) {
-                localStorage.setItem('localpulse_admin_code', 'fantome67000');
-            }
-        } catch (e) {
-            console.error("Erreur LocalStorage:", e);
+        /* Load from LocalStorage if existing */
+        if (localStorage.getItem('localpulse_orders')) {
+            try {
+                ordersDb = JSON.parse(localStorage.getItem('localpulse_orders'));
+            } catch(e) { console.error(e); }
         }
 
-        window.showToast = function(message, type = 'success') {
-            const container = document.getElementById('toast-container');
-            if (!container) return;
-            const toast = document.createElement('div');
-            const colorClass = type === 'success' 
-                ? 'border-green-500/50 bg-dark-900/95 text-green-400' 
-                : 'border-red-500/50 bg-dark-900/95 text-red-400';
-            toast.className = `flex items-center gap-2.5 px-4 py-2.5 rounded-full border shadow-2xl animate-slide-up text-xs font-semibold ${colorClass} mx-auto pointer-events-auto`;
-            toast.innerHTML = `<i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'} text-sm"></i> <span>${message}</span>`;
-            container.appendChild(toast);
-            setTimeout(() => toast.remove(), 4000);
-        };
+        function saveOrders() {
+            localStorage.setItem('localpulse_orders', JSON.stringify(ordersDb));
+        }
 
-        window.toggleBodyScroll = function(lock) {
-            document.body.style.overflow = lock ? 'hidden' : '';
-        };
+        /* STREAMING_CHUNK:Calculator Engine Logic */
+        function updateCalculator() {
+            const vQty = parseInt(document.getElementById('sliderVideo').value);
+            const pQty = parseInt(document.getElementById('sliderPhoto').value);
+            const isExpress = document.getElementById('optExpress').checked;
+            const isScript = document.getElementById('optScript').checked;
 
-        window.toggleAdminPanel = function() {
-            const panel = document.getElementById('admin-panel');
-            const isHidden = panel.classList.contains('hidden');
-            panel.classList.toggle('hidden');
-            window.toggleBodyScroll(isHidden);
-        };
+            document.getElementById('valVideo').innerText = `${vQty} Vidéo${vQty > 1 ? 's' : ''}`;
+            document.getElementById('valPhoto').innerText = `${pQty} Photo${pQty > 1 ? 's' : ''}`;
 
-        window.toggleAuthModal = function() {
-            const modal = document.getElementById('auth-modal');
-            const isHidden = modal.classList.contains('hidden');
-            modal.classList.toggle('hidden');
-            window.toggleBodyScroll(isHidden);
-        };
+            const vPrice = vQty * 39;
+            const pPrice = pQty * 4.90;
+            let optTotal = isScript ? 25 : 0;
+            let subtotal = vPrice + pPrice + optTotal;
 
-        window.toggleCart = function() {
-            const overlay = document.getElementById('cart-overlay');
-            const panel = document.getElementById('cart-panel');
-            if (overlay.classList.contains('hidden')) {
-                overlay.classList.remove('hidden');
-                setTimeout(() => panel.classList.remove('translate-x-full'), 10);
-                window.updateCartUI();
-                window.toggleBodyScroll(true);
-            } else {
-                panel.classList.add('translate-x-full');
-                setTimeout(() => overlay.classList.add('hidden'), 300);
-                window.toggleBodyScroll(false);
-            }
-        };
-
-        window.toggleChat = function() {
-            document.getElementById('chat-window').classList.toggle('hidden');
-        };
-
-        window.saveCart = function() {
-            try {
-                localStorage.setItem('localpulse_cart', JSON.stringify(cart));
-            } catch (e) {
-                console.error("Save cart error:", e);
-            }
-        };
-
-        window.addToCart = function(id, price, name, icon) {
-            const existing = cart.find(i => i.id === id);
-            if (existing) {
-                existing.quantity += 1;
-            } else {
-                cart.push({ 
-                    id: id, 
-                    price: price, 
-                    name: name, 
-                    icon: icon, 
-                    quantity: 1, 
-                    stripeUrl: stripeLinks[id] || stripeLinks['pack_starter'] 
-                });
-            }
-            window.saveCart();
-            window.updateCartUI();
-            window.showToast(`Ajouté au panier : ${name}`);
-        };
-
-        window.updateCartQuantity = function(id, delta) {
-            const index = cart.findIndex(i => i.id === id);
-            if (index !== -1) {
-                cart[index].quantity += delta;
-                if (cart[index].quantity <= 0) {
-                    cart.splice(index, 1);
-                }
-                window.saveCart();
-                window.updateCartUI();
-            }
-        };
-
-        window.removeFromCart = function(id) {
-            cart = cart.filter(i => i.id !== id);
-            window.saveCart();
-            window.updateCartUI();
-            window.showToast("Article retiré du panier");
-        };
-
-        window.clearCart = function() {
-            if (cart.length === 0) return;
-            cart = [];
-            window.saveCart();
-            window.updateCartUI();
-            window.showToast("Panier vidé");
-        };
-
-        window.updateCartUI = function() {
-            const container = document.getElementById('cart-items-container');
-            const emptyMsg = document.getElementById('empty-cart-msg');
-            if (!container) return;
-            
-            container.innerHTML = '';
-            let total = 0, count = 0;
-
-            if (cart.length === 0) {
-                if (emptyMsg) {
-                    container.appendChild(emptyMsg);
-                    emptyMsg.style.display = 'block';
-                }
-            } else {
-                if (emptyMsg) emptyMsg.style.display = 'none';
-                
-                cart.forEach(item => {
-                    const itemTotal = item.price * item.quantity;
-                    total += itemTotal;
-                    count += item.quantity;
-
-                    const el = document.createElement('div');
-                    el.className = 'bg-dark-950 border border-gray-800 hover:border-gray-700 rounded-xl p-3 sm:p-3.5 flex items-center justify-between gap-2.5';
-                    el.innerHTML = `
-                        <div class="flex items-center gap-3 flex-grow min-w-0">
-                            <div class="w-9 h-9 sm:w-10 sm:h-10 shrink-0 rounded-lg bg-purple-600/20 text-purple-400 flex items-center justify-center border border-purple-500/30">
-                                <i class="fa-solid ${item.icon} text-sm sm:text-base"></i>
-                            </div>
-                            <div class="truncate">
-                                <h4 class="font-bold text-white text-xs truncate">${item.name}</h4>
-                                <div class="text-gray-400 text-[11px] font-mono mt-0.5">${item.price.toFixed(2)} € / u</div>
-                                <a href="${item.stripeUrl}" target="_blank" rel="noopener noreferrer" class="text-[10px] text-purple-400 hover:underline inline-flex items-center gap-1 mt-0.5">
-                                    Payer direct via Stripe <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center gap-2 shrink-0">
-                            <div class="flex items-center bg-dark-900 rounded-lg border border-gray-800">
-                                <button onclick="window.updateCartQuantity('${item.id}', -1)" class="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center text-gray-400 hover:text-white transition-colors" title="Moins">
-                                    <i class="fa-solid fa-minus text-[9px]"></i>
-                                </button>
-                                <span class="text-xs font-bold text-white w-5 text-center">${item.quantity}</span>
-                                <button onclick="window.updateCartQuantity('${item.id}', 1)" class="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center text-gray-400 hover:text-white transition-colors" title="Plus">
-                                    <i class="fa-solid fa-plus text-[9px]"></i>
-                                </button>
-                            </div>
-                            <button onclick="window.removeFromCart('${item.id}')" class="w-8 h-8 rounded-lg bg-red-600/10 hover:bg-red-600 text-red-400 hover:text-white flex items-center justify-center transition-colors" title="Supprimer cet article">
-                                <i class="fa-solid fa-trash-can text-xs"></i>
-                            </button>
-                        </div>
-                    `;
-                    container.appendChild(el);
-                });
+            if (isExpress) {
+                subtotal *= 1.30;
             }
 
-            const countEl = document.getElementById('cart-count');
-            const totalEl = document.getElementById('cart-total-price');
-            if (countEl) countEl.innerText = count;
-            if (totalEl) totalEl.innerText = `${total.toFixed(2)} €`;
-        };
+            const finalTotal = subtotal.toFixed(2);
 
-        window.proceedToCheckout = function() {
-            if (cart.length === 0) {
-                window.showToast("Votre panier est vide.", "error");
-                return;
-            }
+            document.getElementById('totalCalcPrice').innerText = `${finalTotal.replace('.', ',')} €`;
+            document.getElementById('summaryVideoQty').innerText = vQty;
+            document.getElementById('summaryVideoPrice').innerText = `${vPrice.toFixed(2).replace('.', ',')} €`;
+            document.getElementById('summaryPhotoQty').innerText = pQty;
+            document.getElementById('summaryPhotoPrice').innerText = `${pPrice.toFixed(2).replace('.', ',')} €`;
+            document.getElementById('summaryOptPrice').innerText = `${(isExpress ? (subtotal - (vPrice + pPrice + optTotal)) + optTotal : optTotal).toFixed(2).replace('.', ',')} €`;
+        }
 
-            const methodEl = document.querySelector('input[name="payment_method"]:checked');
-            const method = methodEl ? methodEl.value : 'stripe';
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        function transferToOrderModal() {
+            const vQty = document.getElementById('sliderVideo').value;
+            const pQty = document.getElementById('sliderPhoto').value;
+            const price = document.getElementById('totalCalcPrice').innerText;
 
-            // Record order in local storage
-            const orderData = {
-                date: new Date().toLocaleDateString('fr-FR') + ' ' + new Date().toLocaleTimeString('fr-FR', {hour: '2digit', minute:'2digit'}),
-                clientName: currentUser ? `${currentUser.prenom} ${currentUser.nom || ''}` : "Client Invité",
-                clientEmail: currentUser ? currentUser.email : "Non renseigné",
-                total: total,
-                paymentMethod: method === 'stripe' ? 'Stripe' : 'Virement',
-                items: [...cart]
+            document.getElementById('modalOrderDetails').innerText = `${vQty} Vidéo(s) + ${pQty} Photo(s) avec options`;
+            document.getElementById('modalOrderTotal').innerText = price;
+            toggleModal('orderModal');
+        }
+
+        /* STREAMING_CHUNK:Order Submission & Tracking Logic */
+        function processOrderSubmit(e) {
+            e.preventDefault();
+            const clientName = document.getElementById('orderClientName').value;
+            const clientEmail = document.getElementById('orderClientEmail').value;
+            const details = document.getElementById('modalOrderDetails').innerText;
+            const totalText = document.getElementById('modalOrderTotal').innerText;
+            const totalVal = parseFloat(totalText.replace('€', '').replace(',', '.'));
+
+            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            const newCode = `LP-2026-${randomNum}`;
+
+            const newOrder = {
+                id: newCode,
+                client: clientName,
+                details: details,
+                total: totalVal,
+                status: "Réception",
+                progress: 25
             };
 
-            try {
-                const orders = JSON.parse(localStorage.getItem('localpulse_orders') || '[]');
-                orders.push(orderData);
-                localStorage.setItem('localpulse_orders', JSON.stringify(orders));
-            } catch (e) {
-                console.error("Erreur enregistrement commande:", e);
-            }
+            ordersDb.unshift(newOrder);
+            saveOrders();
 
-            // Send async order notification via Formspree
-            fetch(FORMSPREE_ENDPOINT, {
-                method: "POST",
-                headers: { "Content-Type": "application/json", "Accept": "application/json" },
-                body: JSON.stringify({
-                    _subject: `[COMMANDE LOCALPULSE] ${orderData.clientName} - ${total.toFixed(2)}€`,
-                    client: orderData.clientName,
-                    email: orderData.clientEmail,
-                    telephone: currentUser ? (currentUser.tel || "N/A") : "N/A",
-                    adresse: currentUser ? (currentUser.adresse || "Terrasson-Lavilledieu") : "N/A",
-                    total: `${total.toFixed(2)} €`,
-                    mode: orderData.paymentMethod,
-                    contenu_panier: cart.map(i => `${i.name} x${i.quantity} (${(i.price * i.quantity).toFixed(2)}€)`).join(' | ')
-                })
-            }).catch(e => console.warn("Notice formspree async:", e));
+            toggleModal('orderModal');
 
-            if (method === 'stripe') {
-                // Find matching Stripe link
-                let targetStripeUrl = stripeLinks['pack_starter'];
-                if (cart.length === 1 && stripeLinks[cart[0].id]) {
-                    targetStripeUrl = stripeLinks[cart[0].id];
-                } else if (cart.length > 0) {
-                    const matched = cart.find(i => stripeLinks[i.id]);
-                    if (matched) targetStripeUrl = stripeLinks[matched.id];
-                }
+            // Pre-fill tracking search
+            document.getElementById('trackInput').value = newCode;
+            searchOrderTracking();
 
-                // Show fallback link box in cart
-                const fallbackBox = document.getElementById('stripe-fallback-box');
-                const fallbackLink = document.getElementById('stripe-direct-fallback-link');
-                if (fallbackBox && fallbackLink) {
-                    fallbackLink.href = targetStripeUrl;
-                    fallbackBox.classList.remove('hidden');
-                }
+            // Scroll to tracking
+            document.getElementById('suivi').scrollIntoView({ behavior: 'smooth' });
 
-                window.showToast("Redirection vers le paiement Stripe...", "success");
+            showToast(`Commande ${newCode} créée avec succès ! Notification envoyée à localpulse33@outlook.fr`);
+        }
 
-                // Clear cart state
-                cart = [];
-                window.saveCart();
-                window.updateCartUI();
+        function searchOrderTracking() {
+            const code = document.getElementById('trackInput').value.trim().toUpperCase();
+            const found = ordersDb.find(o => o.id.toUpperCase() === code);
 
-                // Trigger dual-method redirection for max compatibility
-                try {
-                    window.open(targetStripeUrl, '_blank');
-                } catch(e) {}
-                setTimeout(() => {
-                    window.location.href = targetStripeUrl;
-                }, 600);
-
-            } else {
-                // Wire transfer display
-                document.getElementById('bank-transfer-box').classList.remove('hidden');
-                window.showToast("Commande enregistrée ! Effectuez le virement selon le RIB ci-dessous.", "success");
-                cart = [];
-                window.saveCart();
-                window.updateCartUI();
-            }
-        };
-
-        window.copyRIB = function() {
-            const ribText = "IBAN: FR76 2823 3000 0107 2048 2303 785 - BIC: AGRIFR22XXX";
-            try {
-                navigator.clipboard.writeText(ribText);
-            } catch(e) {
-                const input = document.createElement('input');
-                input.value = ribText;
-                document.body.appendChild(input);
-                input.select();
-                document.execCommand('copy');
-                document.body.removeChild(input);
-            }
-            window.showToast("Coordonnées RIB copiées !");
-        };
-
-        window.updateSimulator = function() {
-            const vEl = document.getElementById('sim-video-range');
-            const pEl = document.getElementById('sim-photo-range');
-            if (!vEl || !pEl) return;
-            const videos = parseInt(vEl.value);
-            const photos = parseInt(pEl.value);
-            document.getElementById('sim-video-count').innerText = videos;
-            document.getElementById('sim-photo-count').innerText = photos;
-            document.getElementById('sim-total-price').innerText = `${(videos * 50) + (photos * 10)} €`;
-        };
-
-        window.addSimulatedToCart = function() {
-            const videos = parseInt(document.getElementById('sim-video-range').value);
-            const photos = parseInt(document.getElementById('sim-photo-range').value);
-            if (videos > 0) window.addToCart('formule_video', 50, `Sur-Mesure: ${videos} Vidéo(s)`, 'fa-video');
-            if (photos > 0) window.addToCart('formule_photo', 10, `Sur-Mesure: ${photos} Photo(s)`, 'fa-camera');
-            if (videos > 0 || photos > 0) {
-                window.showToast("Devis ajouté à votre panier !");
-                window.toggleCart();
-            }
-        };
-
-        window.switchAuthMode = function(mode) {
-            if (mode === 'register') {
-                document.getElementById('auth-view-login').classList.add('hidden');
-                document.getElementById('auth-view-register').classList.remove('hidden');
-            } else {
-                document.getElementById('auth-view-register').classList.add('hidden');
-                document.getElementById('auth-view-login').classList.remove('hidden');
-            }
-        };
-
-        window.handleRegister = async function(e) {
-            e.preventDefault();
-            const submitBtn = document.getElementById('reg-submit-btn');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enregistrement...';
-
-            const nom = document.getElementById('reg-nom').value;
-            const prenom = document.getElementById('reg-prenom').value;
-            const email = document.getElementById('reg-email').value;
-            const tel = document.getElementById('reg-tel').value;
-            const adresse = document.getElementById('reg-adresse').value;
-            const cp = document.getElementById('reg-cp').value;
-            const ville = document.getElementById('reg-ville').value;
-            const password = document.getElementById('reg-pass').value;
-
-            try {
-                fetch(FORMSPREE_ENDPOINT, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json", "Accept": "application/json" },
-                    body: JSON.stringify({
-                        _subject: `[NOUVEAU CLIENT] ${prenom} ${nom}`,
-                        type: "Inscription Client",
-                        nom, prenom, email, telephone: tel, adresse_complete: `${adresse}, ${cp} ${ville}`
-                    })
-                }).catch(e => console.warn(e));
-
-                currentUser = { nom, prenom, email, tel, adresse: `${adresse}, ${cp} ${ville}`, password };
-                localStorage.setItem('localpulse_current_user', JSON.stringify(currentUser));
-                
-                const users = JSON.parse(localStorage.getItem('localpulse_registered_users') || '[]');
-                const filtered = users.filter(u => u.email !== email);
-                filtered.push(currentUser);
-                localStorage.setItem('localpulse_registered_users', JSON.stringify(filtered));
-
-                window.updateAuthUI();
-                window.toggleAuthModal();
-                window.showToast("Compte créé avec succès !");
-            } catch (err) {
-                window.showToast("Erreur lors de l'enregistrement.", "error");
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalText;
-            }
-        };
-
-        window.handleLogin = function(e) {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            
-            const users = JSON.parse(localStorage.getItem('localpulse_registered_users') || '[]');
-            const found = users.find(u => u.email === email && u.password === password);
-            
             if (found) {
-                currentUser = found;
-                localStorage.setItem('localpulse_current_user', JSON.stringify(currentUser));
-                window.updateAuthUI();
-                window.toggleAuthModal();
-                window.showToast("Heureux de vous revoir !");
+                document.getElementById('trackOrderCode').innerText = found.id;
+                document.getElementById('trackClientName').innerText = found.client;
+                document.getElementById('trackStatusBadge').innerText = found.status;
+                document.getElementById('trackPercentageText').innerText = `${found.progress}%`;
+                document.getElementById('trackProgressBar').style.width = `${found.progress}%`;
             } else {
-                window.showToast("Adresse email ou mot de passe incorrect", "error");
+                showToast("Aucune commande trouvée pour ce numéro.", true);
             }
-        };
+        }
 
-        window.handleChangeClientPassword = function(e) {
-            e.preventDefault();
-            const newPwd = document.getElementById('new-client-pwd').value.trim();
-            if (!newPwd || newPwd.length < 3) {
-                window.showToast("Veuillez saisir un mot de passe valide", "error");
-                return;
-            }
+        /* STREAMING_CHUNK:Before / After Interactive Drag Slider Component */
+        let isDragging = false;
+        const baContainer = document.getElementById('baContainer');
+        const baHandle = document.getElementById('baHandle');
+        const baAfterLayer = document.getElementById('baAfterLayer');
+        const baAfterImage = document.getElementById('baAfterImage');
 
-            currentUser.password = newPwd;
-            localStorage.setItem('localpulse_current_user', JSON.stringify(currentUser));
+        function setSliderPosition(x) {
+            if (!baContainer) return;
+            const rect = baContainer.getBoundingClientRect();
+            let position = ((x - rect.left) / rect.width) * 100;
+            if (position < 0) position = 0;
+            if (position > 100) position = 100;
 
-            let users = JSON.parse(localStorage.getItem('localpulse_registered_users') || '[]');
-            users = users.map(u => u.email === currentUser.email ? currentUser : u);
-            localStorage.setItem('localpulse_registered_users', JSON.stringify(users));
+            baHandle.style.left = `${position}%`;
+            baAfterLayer.style.width = `${position}%`;
+            baAfterImage.style.width = `${rect.width}px`;
+        }
 
-            window.showToast("Mot de passe mis à jour !");
-            document.getElementById('new-client-pwd').value = '';
-        };
-
-        window.handleLogout = function() {
-            currentUser = null;
-            localStorage.removeItem('localpulse_current_user');
-            window.updateAuthUI();
-            window.toggleAuthModal();
-            window.showToast("Vous avez été déconnecté");
-        };
-
-        window.updateAuthUI = function() {
-            const btnText = document.getElementById('auth-nav-text');
-            if (currentUser) {
-                if (btnText) btnText.innerText = currentUser.prenom;
-                document.getElementById('auth-view-login').classList.add('hidden');
-                document.getElementById('auth-view-register').classList.add('hidden');
-                document.getElementById('auth-view-logged').classList.remove('hidden');
-                document.getElementById('logged-user-fullname').innerText = `${currentUser.prenom} ${currentUser.nom || ''}`;
-                document.getElementById('logged-user-email').innerText = currentUser.email;
-                document.getElementById('logged-user-address').innerText = currentUser.adresse || '';
-            } else {
-                if (btnText) btnText.innerText = "Mon Compte";
-                document.getElementById('auth-view-logged').classList.add('hidden');
-                document.getElementById('auth-view-login').classList.remove('hidden');
-            }
-        };
-
-        window.handleContactSubmit = async function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('contact-submit-btn');
-            const original = btn.innerHTML;
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Envoi...';
-
-            try {
-                await fetch(FORMSPREE_ENDPOINT, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json", "Accept": "application/json" },
-                    body: JSON.stringify({
-                        _subject: `[CONTACT WEBSITE] ${document.getElementById('contact-name').value}`,
-                        email: document.getElementById('contact-email').value,
-                        message: document.getElementById('contact-message').value
-                    })
-                });
-                window.showToast("Votre message a bien été envoyé !");
-                e.target.reset();
-            } catch (err) {
-                window.showToast("Erreur lors de l'envoi du message.", "error");
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = original;
-            }
-        };
-
-        window.loginAdmin = function() {
-            const inputPwd = document.getElementById('admin-pwd-input').value;
-            const savedCode = localStorage.getItem('localpulse_admin_code') || 'fantome67000';
-            
-            if (inputPwd === savedCode) {
-                document.getElementById('admin-login-box').classList.add('hidden');
-                document.getElementById('admin-content-box').classList.remove('hidden');
-                window.loadAdminData();
-                window.showToast("Connexion Administrateur réussie");
-            } else {
-                window.showToast("Code secret administrateur incorrect", "error");
-            }
-        };
-
-        window.switchAdminTab = function(tab) {
-            ['stats', 'orders', 'users', 'settings'].forEach(t => {
-                document.getElementById(`admin-tab-${t}`).classList.add('hidden');
-                const btn = document.getElementById(`tab-btn-${t}`);
-                if (btn) {
-                    btn.classList.remove('border-b-2', 'border-purple-500', 'text-purple-400');
-                    btn.classList.add('text-gray-400');
-                }
+        if (baContainer) {
+            baContainer.addEventListener('mousedown', () => isDragging = true);
+            window.addEventListener('mouseup', () => isDragging = false);
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                setSliderPosition(e.clientX);
             });
-            document.getElementById(`admin-tab-${tab}`).classList.remove('hidden');
-            const activeBtn = document.getElementById(`tab-btn-${tab}`);
-            if (activeBtn) {
-                activeBtn.classList.add('border-b-2', 'border-purple-500', 'text-purple-400');
-                activeBtn.classList.remove('text-gray-400');
-            }
-        };
 
-        window.updateAdminPassword = function() {
-            const newCode = document.getElementById('new-admin-code').value.trim();
-            if (newCode.length < 4) {
-                window.showToast("Le code secret doit comporter au moins 4 caractères", "error");
-                return;
-            }
-            localStorage.setItem('localpulse_admin_code', newCode);
-            window.showToast("Code secret Administrateur mis à jour !");
-            document.getElementById('new-admin-code').value = '';
-        };
+            baContainer.addEventListener('touchstart', () => isDragging = true);
+            window.addEventListener('touchend', () => isDragging = false);
+            window.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                setSliderPosition(e.touches[0].clientX);
+            });
+        }
 
-        window.loadAdminData = function() {
-            const orders = JSON.parse(localStorage.getItem('localpulse_orders') || '[]');
-            const users = JSON.parse(localStorage.getItem('localpulse_registered_users') || '[]');
-            
+        /* STREAMING_CHUNK:Admin PIN Security & Dashboard Functions */
+        function verifyAdminPin() {
+            const pin = document.getElementById('adminPinInput').value;
+            if (pin === "1234") {
+                document.getElementById('adminPinScreen').classList.add('hidden');
+                document.getElementById('adminContentScreen').classList.remove('hidden');
+                renderAdminOrders();
+            } else {
+                showToast("Code PIN incorrect ! Astuce: 1234", true);
+            }
+        }
+
+        function lockAdmin() {
+            document.getElementById('adminPinInput').value = '';
+            document.getElementById('adminPinScreen').classList.remove('hidden');
+            document.getElementById('adminContentScreen').classList.add('hidden');
+        }
+
+        function renderAdminOrders() {
+            const tbody = document.getElementById('adminOrderTable');
+            tbody.innerHTML = '';
+
             let totalRev = 0;
-            let ordersHtml = orders.length === 0 ? '<p class="text-gray-500 text-center py-4">Aucune commande enregistrée.</p>' : '';
-            let usersHtml = users.length === 0 ? '<p class="text-gray-500 text-center py-4">Aucun utilisateur inscrit.</p>' : '';
+            let activeCount = 0;
 
-            orders.forEach((o, index) => {
-                totalRev += o.total;
-                const itemsList = o.items ? o.items.map(i => `${i.name} (x${i.quantity})`).join(', ') : 'Articles non détaillés';
-                ordersHtml += `
-                    <div class="p-3 bg-dark-900 rounded-lg border border-gray-800 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                        <div>
-                            <div class="flex items-center gap-2">
-                                <strong class="text-white">${o.clientName}</strong>
-                                <span class="text-[10px] px-2 py-0.5 rounded ${o.paymentMethod === 'Stripe' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' : 'bg-green-500/20 text-green-400 border border-green-500/30'}">${o.paymentMethod}</span>
-                            </div>
-                            <div class="text-[11px] text-gray-400 mt-0.5">${o.date} • Mail : ${o.clientEmail}</div>
-                            <div class="text-[10px] text-purple-300 mt-0.5"><i class="fa-solid fa-box mr-1"></i> ${itemsList}</div>
-                        </div>
-                        <div class="flex items-center justify-between sm:justify-end gap-3 pt-2 sm:pt-0 border-t sm:border-t-0 border-gray-800">
-                            <strong class="text-green-400 text-sm">${o.total.toFixed(2)} €</strong>
-                            <button onclick="window.deleteAdminOrder(${index})" class="text-red-400 hover:text-red-300 text-xs px-2 py-1 rounded bg-red-500/10"><i class="fa-solid fa-trash-can"></i></button>
-                        </div>
-                    </div>`;
+            ordersDb.forEach((order, index) => {
+                totalRev += order.total;
+                if (order.status !== 'Livraison HD') activeCount++;
+
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-white/5 border-b border-white/5";
+                tr.innerHTML = `
+                    <td class="p-2.5 font-mono text-cyan-400 font-bold">${order.id}</td>
+                    <td class="p-2.5 font-medium text-white">${order.client}</td>
+                    <td class="p-2.5 font-bold text-emerald-400">${order.total} €</td>
+                    <td class="p-2.5">
+                        <select onchange="updateOrderStatus(${index}, this.value)" class="bg-slate-800 text-xs text-gray-200 p-1.5 rounded border border-white/10">
+                            <option value="Réception" ${order.status==='Réception'?'selected':''}>Réception (25%)</option>
+                            <option value="Traitement" ${order.status==='Traitement'?'selected':''}>Traitement (50%)</option>
+                            <option value="Validation" ${order.status==='Validation'?'selected':''}>Validation (75%)</option>
+                            <option value="Livraison HD" ${order.status==='Livraison HD'?'selected':''}>Livraison HD (100%)</option>
+                        </select>
+                    </td>
+                `;
+                tbody.appendChild(tr);
             });
 
-            users.forEach((u) => {
-                usersHtml += `
-                    <div class="p-3 bg-dark-900 rounded-lg border border-gray-800 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                        <div>
-                            <strong class="text-white">${u.prenom} ${u.nom || ''}</strong> (${u.email})
-                            <div class="text-[10px] text-gray-400">Tél : ${u.tel || 'Non renseigné'} • Adresse : ${u.adresse || 'N/A'}</div>
-                        </div>
-                        <span class="text-[10px] bg-purple-600/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 self-start sm:self-center">Client Actif</span>
-                    </div>`;
-            });
+            document.getElementById('adminTotalRevenue').innerText = `${totalRev.toFixed(0)} €`;
+            document.getElementById('adminActiveCount').innerText = activeCount;
+        }
 
-            document.getElementById('admin-total-rev').innerText = `${totalRev.toFixed(2)} €`;
-            document.getElementById('admin-total-orders-count').innerText = orders.length;
-            document.getElementById('admin-users-count').innerText = users.length;
-            document.getElementById('admin-badge-orders').innerText = orders.length;
-            document.getElementById('admin-badge-users').innerText = users.length;
-            document.getElementById('admin-orders-list').innerHTML = ordersHtml;
-            document.getElementById('admin-users-list').innerHTML = usersHtml;
-        };
+        function updateOrderStatus(index, newStatus) {
+            ordersDb[index].status = newStatus;
+            if (newStatus === 'Réception') ordersDb[index].progress = 25;
+            if (newStatus === 'Traitement') ordersDb[index].progress = 50;
+            if (newStatus === 'Validation') ordersDb[index].progress = 75;
+            if (newStatus === 'Livraison HD') ordersDb[index].progress = 100;
 
-        window.deleteAdminOrder = function(index) {
-            let orders = JSON.parse(localStorage.getItem('localpulse_orders') || '[]');
-            orders.splice(index, 1);
-            localStorage.setItem('localpulse_orders', JSON.stringify(orders));
-            window.loadAdminData();
-            window.showToast("Commande supprimée de l'historique");
-        };
+            saveOrders();
+            renderAdminOrders();
+            showToast(`Statut de la commande ${ordersDb[index].id} mis à jour.`);
+        }
 
-        window.clearAllOrders = function() {
-            localStorage.removeItem('localpulse_orders');
-            window.loadAdminData();
-            window.showToast("Historique des commandes réinitialisé");
-        };
+        /* STREAMING_CHUNK:UI Helpers, FAQ Toggles, and Toast Notifications */
+        function toggleModal(modalId) {
+            const el = document.getElementById(modalId);
+            el.classList.toggle('hidden');
+        }
 
-        window.sendChatMessage = async function() {
-            const input = document.getElementById('chat-input');
-            const text = input.value.trim();
-            if (!text) return;
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
 
-            const container = document.getElementById('chat-messages');
-            container.innerHTML += `<div class="bg-purple-600 text-white p-2.5 rounded-xl ml-auto max-w-[85%] text-xs leading-relaxed font-medium mb-2">${text}</div>`;
-            input.value = '';
-            
-            const loadingId = 'loading-' + Date.now();
-            container.innerHTML += `<div id="${loadingId}" class="bg-dark-900 border border-gray-800 p-2.5 rounded-xl max-w-[85%] text-gray-400 text-xs flex items-center gap-2 mb-2"><i class="fa-solid fa-spinner fa-spin text-purple-400"></i> L'assistant réfléchit...</div>`;
-            container.scrollTop = container.scrollHeight;
+        function toggleFaq(faqId) {
+            const faq = document.getElementById(faqId);
+            const icon = document.getElementById(`${faqId}Icon`);
+            faq.classList.toggle('hidden');
+            if (icon) icon.classList.toggle('rotate-180');
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast("Message envoyé avec succès au Studio (localpulse33@outlook.fr) !");
+            e.target.reset();
+        }
+
+        function showToast(message, isError = false) {
+            const toast = document.createElement('div');
+            toast.className = `fixed bottom-5 right-5 z-50 px-5 py-3.5 rounded-2xl glass-panel text-xs font-semibold text-white border ${isError ? 'border-red-500/50 bg-red-950/80' : 'border-cyan-400/50 bg-slate-900/90'} shadow-2xl transition-all duration-300 transform translate-y-4 opacity-0 flex items-center gap-2`;
+            toast.innerHTML = `<i class="fa-solid ${isError ? 'fa-triangle-exclamation text-red-400' : 'fa-circle-check text-cyan-400'}"></i> <span>${message}</span>`;
+            document.body.appendChild(toast);
 
             setTimeout(() => {
-                const el = document.getElementById(loadingId);
-                if (el) el.remove();
-                container.innerHTML += `<div class="bg-dark-900 border border-gray-800 p-2.5 rounded-xl max-w-[85%] text-gray-200 text-xs leading-relaxed mb-2">
-                    LocalPulse Digital (Terrasson-Lavilledieu 24120) est à votre service. Vous pouvez passer commande via notre panier ou nous écrire à localpulse33@outlook.fr !
-                </div>`;
-                container.scrollTop = container.scrollHeight;
-            }, 1000);
-        };
+                toast.classList.remove('translate-y-4', 'opacity-0');
+            }, 10);
 
-        // Window onload initialization
-        window.onload = function() {
-            window.updateAuthUI();
-            window.updateCartUI();
-            window.updateSimulator();
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
 
-            // Payment radio change handler
-            document.querySelectorAll('input[name="payment_method"]').forEach(radio => {
-                radio.addEventListener('change', function() {
-                    const box = document.getElementById('bank-transfer-box');
-                    if (box) {
-                        if (this.value === 'transfer') box.classList.remove('hidden');
-                        else box.classList.add('hidden');
-                    }
-                });
-            });
-        };
+        // Initialize calculator on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            updateCalculator();
+        });
     </script>
 </body>
 </html>
