@@ -95,11 +95,15 @@
     </header>
 
     <main class="flex-grow pt-20">
+        <!-- HERO -->
         <section class="relative py-20 overflow-hidden flex items-center justify-center min-h-[70vh]">
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-600/15 rounded-full blur-[140px] pointer-events-none animate-pulse-glow"></div>
             <div class="container mx-auto px-4 text-center relative z-10">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 text-xs font-bold uppercase tracking-widest mb-6">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Montage Pro CapCut & IA
+                </div>
                 <h1 class="text-4xl md:text-7xl font-black mb-6 leading-tight tracking-tight">Propulsez votre image avec <br/>l'IA & la <span class="text-gradient">Vidéo Virale</span></h1>
-                <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">Montage vidéo vertical & retouche photo IA haute définition pour maximiser votre visibilité.</p>
+                <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">Montage vidéo vertical nerveux & retouche photo haute définition pour les entreprises de Dordogne. Déléguez votre contenu visuel.</p>
                 <div class="flex flex-wrap justify-center gap-4 mt-8">
                     <a href="#tarifs" class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-base py-4 px-8 rounded-full neon-glow hover:scale-105 transition-all">
                         Voir les Tarifs & Packs <i class="fa-solid fa-arrow-down"></i>
@@ -108,47 +112,60 @@
             </div>
         </section>
 
+        <!-- PACKS -->
         <section id="tarifs" class="py-16 relative z-10 bg-dark-900/50 border-t border-gray-800">
             <div class="container mx-auto px-4 max-w-6xl">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-5xl font-black mb-4">Nos <span class="text-gradient">Packs Complets</span></h2>
-                    <p class="text-gray-400">Paiement sécurisé via Stripe.</p>
+                    <h2 class="text-3xl md:text-5xl font-black mb-4">Nos <span class="text-gradient">Packs Mensuels</span></h2>
+                    <p class="text-gray-400">Des solutions clés en main. Paiement sécurisé via Stripe.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                    <!-- Pack Starter -->
+                    <!-- Essentiel -->
                     <div class="bg-dark-950 rounded-2xl p-8 border border-gray-800 hover:border-blue-500 transition-colors flex flex-col justify-between group">
                         <div>
                             <div class="text-blue-400 mb-4"><i class="fa-solid fa-box-open text-3xl"></i></div>
-                            <h3 class="text-2xl font-bold mb-2">Pack Starter</h3>
-                            <p class="text-sm text-gray-400 mb-4">3 Vidéos HD + 5 Photos IA</p>
-                            <div class="text-4xl font-black mb-6">149.00 €</div>
+                            <h3 class="text-2xl font-bold mb-2">Essentiel</h3>
+                            <p class="text-sm text-gray-400 mb-4">4 Vidéos HD + 5 Photos Pro</p>
+                            <div class="text-4xl font-black mb-6">250.00 € <span class="text-sm font-normal text-gray-500">/mois</span></div>
+                            <ul class="space-y-3 mb-6 text-sm text-gray-300">
+                                <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> Montage dynamique (CapCut)</li>
+                                <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> Sous-titres & musique tendance</li>
+                            </ul>
                         </div>
-                        <button onclick="addToCart('pack_starter', 149.00, 'Pack Starter', 'fa-box')" class="w-full py-3.5 rounded-xl bg-gray-800 hover:bg-blue-600 text-white font-bold flex items-center justify-center gap-2 transition-colors">
+                        <button onclick="addToCart('pack_essentiel', 250.00, 'Pack Essentiel', 'fa-box')" class="w-full py-3.5 rounded-xl bg-gray-800 hover:bg-blue-600 text-white font-bold flex items-center justify-center gap-2 transition-colors">
                             <i class="fa-solid fa-cart-plus"></i> Ajouter au Panier
                         </button>
                     </div>
-                    <!-- Booster Viral -->
+                    <!-- Pro -->
                     <div class="bg-dark-950 rounded-2xl p-8 border-2 border-purple-500 neon-glow flex flex-col justify-between transform md:-translate-y-4 relative">
                         <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-600 text-white text-[10px] font-bold uppercase px-3 py-1 rounded-full">Recommandé</div>
                         <div>
                             <div class="text-purple-400 mb-4"><i class="fa-solid fa-rocket text-3xl"></i></div>
-                            <h3 class="text-2xl font-bold mb-2">Booster Viral</h3>
-                            <p class="text-sm text-gray-400 mb-4">8 Vidéos HD + 15 Photos Pro</p>
-                            <div class="text-4xl font-black mb-6">549.99 €</div>
+                            <h3 class="text-2xl font-bold mb-2">Pro</h3>
+                            <p class="text-sm text-gray-400 mb-4">8 Vidéos (2/sem) + 15 Photos</p>
+                            <div class="text-4xl font-black mb-6">500.00 € <span class="text-sm font-normal text-gray-500">/mois</span></div>
+                            <ul class="space-y-3 mb-6 text-sm text-gray-300">
+                                <li><i class="fa-solid fa-check text-purple-400 mr-2"></i> Sound design immersif</li>
+                                <li><i class="fa-solid fa-check text-purple-400 mr-2"></i> Transitions visuelles avancées</li>
+                            </ul>
                         </div>
-                        <button onclick="addToCart('booster_viral', 549.99, 'Booster Viral', 'fa-rocket')" class="w-full py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-extrabold shadow-lg flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform">
+                        <button onclick="addToCart('pack_pro', 500.00, 'Pack Pro', 'fa-rocket')" class="w-full py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-extrabold shadow-lg flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform">
                             <i class="fa-solid fa-cart-plus"></i> Ajouter au Panier
                         </button>
                     </div>
-                    <!-- Dominance IA -->
+                    <!-- Expert -->
                     <div class="bg-dark-950 rounded-2xl p-8 border border-gray-800 hover:border-purple-500 transition-colors flex flex-col justify-between">
                         <div>
                             <div class="text-pink-400 mb-4"><i class="fa-solid fa-crown text-3xl"></i></div>
-                            <h3 class="text-2xl font-bold mb-2">Dominance IA</h3>
-                            <p class="text-sm text-gray-400 mb-4">12 Vidéos Ultra HD + Stratégie</p>
-                            <div class="text-4xl font-black mb-6">689.99 €</div>
+                            <h3 class="text-2xl font-bold mb-2">Expert</h3>
+                            <p class="text-sm text-gray-400 mb-4">12 Vidéos + 25 Photos Pro</p>
+                            <div class="text-4xl font-black mb-6">850.00 € <span class="text-sm font-normal text-gray-500">/mois</span></div>
+                            <ul class="space-y-3 mb-6 text-sm text-gray-300">
+                                <li><i class="fa-solid fa-check text-pink-400 mr-2"></i> Scripts générés par IA (Gemini)</li>
+                                <li><i class="fa-solid fa-check text-pink-400 mr-2"></i> Omniprésence totale (3/sem)</li>
+                            </ul>
                         </div>
-                        <button onclick="addToCart('dominance_ia', 689.99, 'Dominance IA', 'fa-crown')" class="w-full py-3.5 rounded-xl bg-gray-800 hover:bg-purple-600 text-white font-bold flex items-center justify-center gap-2 transition-colors">
+                        <button onclick="addToCart('pack_expert', 850.00, 'Pack Expert', 'fa-crown')" class="w-full py-3.5 rounded-xl bg-gray-800 hover:bg-purple-600 text-white font-bold flex items-center justify-center gap-2 transition-colors">
                             <i class="fa-solid fa-cart-plus"></i> Ajouter au Panier
                         </button>
                     </div>
@@ -156,6 +173,7 @@
             </div>
         </section>
 
+        <!-- A L'UNITE / SUR MESURE -->
         <section id="devis" class="py-16 bg-dark-900 border-y border-gray-800">
             <div class="container mx-auto px-4 max-w-4xl">
                 <div class="bg-dark-950 rounded-2xl border border-gray-800 p-8 relative overflow-hidden">
@@ -165,14 +183,14 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                         <div class="bg-dark-900 p-6 rounded-xl border border-gray-800">
                             <div class="flex justify-between items-center mb-4">
-                                <label class="font-bold text-sm text-gray-200"><i class="fa-solid fa-video text-purple-400 mr-2"></i>Vidéos (50€/u)</label>
+                                <label class="font-bold text-sm text-gray-200"><i class="fa-solid fa-video text-purple-400 mr-2"></i>Vidéos (80€/u)</label>
                                 <span class="text-xl font-black text-purple-400" id="sim-video-count">1</span>
                             </div>
                             <input type="range" id="sim-video-range" min="0" max="20" value="1" oninput="updateSimulator()" class="w-full accent-purple-500 cursor-pointer">
                         </div>
                         <div class="bg-dark-900 p-6 rounded-xl border border-gray-800">
                             <div class="flex justify-between items-center mb-4">
-                                <label class="font-bold text-sm text-gray-200"><i class="fa-solid fa-camera text-blue-400 mr-2"></i>Photos (10€/u)</label>
+                                <label class="font-bold text-sm text-gray-200"><i class="fa-solid fa-camera text-blue-400 mr-2"></i>Photos (15€/u)</label>
                                 <span class="text-xl font-black text-blue-400" id="sim-photo-count">0</span>
                             </div>
                             <input type="range" id="sim-photo-range" min="0" max="50" value="0" oninput="updateSimulator()" class="w-full accent-blue-500 cursor-pointer">
@@ -181,23 +199,78 @@
                     <div class="flex flex-col sm:flex-row items-center justify-between bg-dark-900 p-6 rounded-xl border border-purple-500/30">
                         <div class="mb-4 sm:mb-0 text-center sm:text-left">
                             <span class="text-xs text-gray-400 uppercase tracking-widest block mb-1">Montant Estimé</span>
-                            <div class="text-3xl font-black text-white" id="sim-total-price">50.00 €</div>
+                            <div class="text-3xl font-black text-white" id="sim-total-price">80.00 €</div>
                         </div>
                         <button onclick="addSimulatedToCart()" class="w-full sm:w-auto px-8 py-3.5 bg-gray-800 hover:bg-purple-600 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-plus"></i> Ajouter ces articles au panier
+                            <i class="fa-solid fa-plus"></i> Ajouter au panier
                         </button>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- EXEMPLES & METHODE -->
+        <section id="exemples" class="py-20 bg-dark-950 border-b border-gray-800">
+            <div class="container mx-auto px-4 max-w-5xl">
+                <div class="text-center mb-14">
+                    <h2 class="text-3xl md:text-5xl font-black mb-4">Notre <span class="text-gradient">Savoir-Faire</span></h2>
+                    <p class="text-gray-400 text-lg">Pas de montages amateurs. Uniquement du contenu optimisé pour l'attention.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-dark-900 border border-gray-800 rounded-2xl overflow-hidden hover:border-purple-500/50 transition-colors">
+                        <div class="h-56 bg-gradient-to-br from-purple-900/40 to-black flex items-center justify-center relative">
+                            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+                            <i class="fa-solid fa-play text-6xl text-purple-500 neon-glow rounded-full z-10"></i>
+                        </div>
+                        <div class="p-8">
+                            <span class="text-xs font-bold uppercase tracking-widest text-purple-400 mb-2 block">Montage Vidéo Vertical</span>
+                            <h4 class="font-bold text-xl mb-3 text-white">Clip Cinematic & Format Short</h4>
+                            <p class="text-sm text-gray-400 leading-relaxed">
+                                Finis les blancs de 3 secondes qui font fuir l'audience. Nous utilisons <strong>CapCut Pro</strong> pour réaliser des "speed ramps" agressifs, intégrer des sous-titres dynamiques ultra-lisibles et appliquer un "Sound Design" (bruitages immersifs) qui capte l'attention de l'algorithme TikTok/Reels en moins de 2 secondes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-dark-900 border border-gray-800 rounded-2xl overflow-hidden hover:border-blue-500/50 transition-colors">
+                        <div class="h-56 bg-gradient-to-br from-blue-900/40 to-black flex items-center justify-center relative">
+                            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+                            <i class="fa-solid fa-camera-retro text-6xl text-blue-500 z-10"></i>
+                        </div>
+                        <div class="p-8">
+                            <span class="text-xs font-bold uppercase tracking-widest text-blue-400 mb-2 block">Retouche High-End</span>
+                            <h4 class="font-bold text-xl mb-3 text-white">Sublimation Produit & Architecture</h4>
+                            <p class="text-sm text-gray-400 leading-relaxed">
+                                Une photo terne ne vend pas. Nous retouchons vos clichés au pixel près : correction colorimétrique avancée, nettoyage des imperfections (poussières, reflets), ré-éclairage par zones. Vos plats, vos produits ou vos locaux passent instantanément d'une qualité "smartphone" à une qualité "magazine".
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-dark-900 p-8 rounded-2xl border border-purple-500/30 text-center relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-purple-600/10 rounded-full blur-[80px] pointer-events-none"></div>
+                    <i class="fa-solid fa-microchip text-3xl text-purple-400 mb-4"></i>
+                    <h4 class="text-xl font-bold text-white mb-2">Boosté par l'Intelligence Artificielle</h4>
+                    <p class="text-sm text-gray-400 max-w-2xl mx-auto">
+                        Nous ne faisons pas qu'exécuter. Nous utilisons des IA avancées comme <strong>Gemini et ChatGPT</strong> pour brainstormer vos scripts, structurer vos accroches ("Hooks") et vous garantir un contenu textuel pensé exclusivement pour la conversion et le clic.
+                    </p>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- CART SLIDE-OVER (Redesigned based on screenshot) -->
+    <footer class="bg-dark-950 border-t border-gray-800/80 py-10 text-center text-gray-500 text-sm">
+        <div class="container mx-auto px-4">
+            <p class="mb-2 text-white font-bold">LOCALPULSE DIGITAL — Dordogne (24120)</p>
+            <p class="text-xs">© 2026 LocalPulse Digital. Tous droits réservés. Paiements sécurisés via Stripe.</p>
+        </div>
+    </footer>
+
+    <!-- CART SLIDE-OVER -->
     <div id="cart-overlay" class="fixed inset-0 z-[110] hidden">
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleCart()"></div>
         <div class="absolute top-0 right-0 h-full w-full sm:w-[450px] bg-[#0b0f19] shadow-2xl flex flex-col transform transition-transform duration-300 translate-x-full" id="cart-panel">
             
-            <!-- Cart Header -->
             <div class="p-6 border-b border-gray-800/60 flex items-center justify-between mt-2">
                 <h2 class="text-xl font-bold text-white flex items-center gap-3">
                     <div class="w-10 h-10 bg-purple-900/40 rounded-xl flex items-center justify-center border border-purple-500/20">
@@ -215,14 +288,11 @@
                 </div>
             </div>
 
-            <!-- Cart Items -->
             <div class="flex-grow overflow-y-auto p-6" id="cart-items-container">
                 <!-- Injected via JS -->
             </div>
 
-            <!-- Cart Footer & Checkout -->
             <div class="p-6 bg-[#030712] border-t border-gray-800/60 shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
-                <!-- Total Box -->
                 <div class="bg-[#0b0f19] border border-gray-800 rounded-2xl p-5 flex items-center justify-between mb-6">
                     <span class="text-gray-400 font-bold text-sm uppercase tracking-widest">Total Général :</span>
                     <span class="text-3xl font-black text-white" id="cart-total-price">0.00 €</span>
@@ -232,7 +302,6 @@
                     <h3 class="text-[11px] font-black text-purple-400 uppercase tracking-widest mb-3 ml-1">Mode de Règlement</h3>
                     
                     <div class="space-y-3 mb-6 relative">
-                        <!-- Option Stripe -->
                         <label class="relative flex items-center gap-4 p-4 rounded-xl cursor-pointer transition-all border border-gray-800 bg-[#0b0f19] hover:bg-gray-900">
                             <input type="radio" name="payment_method" value="stripe" checked class="cart-radio peer sr-only">
                             <div class="w-full flex items-center gap-4 peer-checked:border-purple-500 absolute inset-0 border rounded-xl transition-colors pointer-events-none"></div>
@@ -250,7 +319,6 @@
                             </div>
                         </label>
 
-                        <!-- Option Virement -->
                         <label class="relative flex items-center gap-4 p-4 rounded-xl cursor-pointer transition-all border border-gray-800 bg-[#0b0f19] hover:bg-gray-900">
                             <input type="radio" name="payment_method" value="transfer" class="cart-radio peer sr-only">
                             <div class="w-full flex items-center gap-4 peer-checked:border-purple-500 absolute inset-0 border rounded-xl transition-colors pointer-events-none"></div>
@@ -260,13 +328,12 @@
                             </div>
                             
                             <div class="flex-grow z-10">
-                                <strong class="text-white text-sm font-bold flex items-center gap-1.5"><i class="fa-solid fa-building-columns text-green-400"></i> Virement Bancaire Direct</strong>
+                                <strong class="text-white text-sm font-bold flex items-center gap-1.5"><i class="fa-solid fa-building-columns text-green-400"></i> Virement Bancaire</strong>
                                 <span class="text-xs text-gray-400 block mt-0.5">Affichage du RIB + confirmation email</span>
                             </div>
                         </label>
                     </div>
 
-                    <!-- Checkout Button -->
                     <button onclick="proceedToCheckout()" id="checkout-btn" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(168,85,247,0.4)] flex items-center justify-center gap-2 transition-all active:scale-95 text-sm">
                         <span>Valider & Régler la Commande</span> <i class="fa-solid fa-arrow-right"></i>
                     </button>
@@ -284,13 +351,11 @@
             <button onclick="toggleAdminPanel()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
             <h2 class="text-2xl font-bold mb-2 text-white"><i class="fa-solid fa-gauge text-purple-400"></i> Espace Administrateur</h2>
             <p class="text-sm text-gray-400 mb-6">Gestion des commandes stockées localement.</p>
-            <div class="bg-dark-950 p-4 rounded-xl text-xs text-gray-300 space-y-3" id="admin-orders-list">
-                <!-- JS Injected -->
-            </div>
+            <div class="bg-dark-950 p-4 rounded-xl text-xs text-gray-300 space-y-3" id="admin-orders-list"></div>
         </div>
     </div>
 
-    <!-- AUTH MODAL (Connexion/Inscription Rapide) -->
+    <!-- AUTH MODAL -->
     <div id="auth-modal" class="fixed inset-0 z-[120] hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-dark-900 w-full max-w-md rounded-2xl p-6 relative border border-purple-500/30 neon-glow">
             <button onclick="toggleAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
@@ -317,19 +382,20 @@
     </div>
 
     <script>
-        const FORMSPREE_ENDPOINT = "https://formspree.io/f/xwlvqrrg"; // Replace with your actual endpoint
+        const FORMSPREE_ENDPOINT = "https://formspree.io/f/xwlvqrrg"; 
+        
+        // TES VRAIS LIENS STRIPE
         const stripeLinks = {
-            'pack_starter': 'https://buy.stripe.com/7sY00j0O22RQ0CY1qF38403',
-            'booster_viral': 'https://buy.stripe.com/dRm14nfIW8caetOb1f38405',
-            'dominance_ia': 'https://buy.stripe.com/28E00jaoCfEC0CYfhv38407',
-            'formule_photo': 'https://buy.stripe.com/eVq9ATfIW786clG5GV38401',
-            'formule_video': 'https://buy.stripe.com/3cI9ATdAO3VU0CY5GV38404'
+            'pack_essentiel': 'https://buy.stripe.com/8x200j7cq1NMfxSd9n3840a',
+            'pack_pro': 'https://buy.stripe.com/aFa5kD40edwuetO2uJ3840b',
+            'pack_expert': 'https://buy.stripe.com/7sYfZh7cqcsqgBW7P33840c',
+            'formule_photo': 'https://buy.stripe.com/eVq4gzfIWakibhCb1f38408',
+            'formule_video': 'https://buy.stripe.com/14A5kDaoCdwuclG9Xb38409'
         };
 
         let cart = JSON.parse(localStorage.getItem('localpulse_cart')) || [];
         let currentUser = JSON.parse(localStorage.getItem('localpulse_user')) || null;
 
-        // --- UI UTILS ---
         function showToast(msg, type='success') {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
@@ -344,7 +410,6 @@
             document.body.style.overflow = lock ? 'hidden' : '';
         }
 
-        // --- MODALS ---
         function toggleCart() {
             const overlay = document.getElementById('cart-overlay');
             const panel = document.getElementById('cart-panel');
@@ -373,7 +438,6 @@
             updateAdmin(); 
         }
 
-        // --- AUTH ---
         function quickAuth() {
             const email = document.getElementById('quick-email').value.trim();
             const name = document.getElementById('quick-name').value.trim();
@@ -388,18 +452,15 @@
             toggleAuthModal();
             showToast('Compte enregistré avec succès');
             
-            // Re-open cart if there are items to encourage checkout
             if(cart.length > 0) setTimeout(() => toggleCart(), 400);
         }
 
-        // --- INIT ---
         window.onload = () => {
             if(currentUser) document.getElementById('auth-nav-text').innerText = currentUser.prenom;
             updateSimulator();
-            updateCartUI(); // Ensures badge count is correct on load
+            updateCartUI();
         }
 
-        // --- CART LOGIC ---
         function saveCart() {
             localStorage.setItem('localpulse_cart', JSON.stringify(cart));
         }
@@ -415,7 +476,6 @@
             updateCartUI();
             showToast(`${name} ajouté au panier`);
             
-            // Automatically open cart to show the addition
             const overlay = document.getElementById('cart-overlay');
             if (overlay.classList.contains('hidden')) {
                 toggleCart();
@@ -460,7 +520,6 @@
                     total += item.price * item.quantity; 
                     count += item.quantity;
                     
-                    // Direct link available for this item?
                     const itemLink = stripeLinks[item.id] ? `<a href="${stripeLinks[item.id]}" target="_blank" class="text-purple-400 text-[11px] hover:text-purple-300 mt-2 flex items-center gap-1.5 font-medium transition-colors"><i class="fa-solid fa-arrow-up-right-from-square"></i> Payer direct via Stripe</a>` : '';
 
                     cont.innerHTML += `
@@ -493,11 +552,9 @@
             document.getElementById('cart-total-price').innerText = total.toFixed(2) + ' €';
         }
 
-        // --- CHECKOUT LOGIC ---
         async function proceedToCheckout() {
             if(!cart.length) return showToast('Votre panier est vide', 'error');
             
-            // Obligation to have an account/email
             if(!currentUser) { 
                 toggleCart(); 
                 setTimeout(() => toggleAuthModal(), 350);
@@ -510,11 +567,9 @@
             const btn = document.getElementById('checkout-btn');
             const originalBtnHtml = btn.innerHTML;
             
-            // Loading state
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-xl"></i> Traitement en cours...';
             btn.disabled = true;
 
-            // 1. Save order locally for Admin dashboard
             const orders = JSON.parse(localStorage.getItem('localpulse_orders') || '[]');
             orders.push({
                 date: new Date().toLocaleString('fr-FR'), 
@@ -526,7 +581,7 @@
             });
             localStorage.setItem('localpulse_orders', JSON.stringify(orders));
 
-            // 2. Send notification to Formspree
+            // Envoi de l'email via Formspree
             try {
                 await fetch(FORMSPREE_ENDPOINT, { 
                     method: "POST", 
@@ -542,27 +597,22 @@
                 });
             } catch (error) {
                 console.error("Formspree error:", error);
-                // Continue checkout even if email fails silently
             }
 
-            // 3. Handle Payment Routing
             setTimeout(() => {
                 btn.innerHTML = originalBtnHtml;
                 btn.disabled = false;
 
                 if (method === 'stripe') {
-                    // Perfect match: Only 1 item type, quantity is 1, and we have a static link
                     if (cart.length === 1 && cart[0].quantity === 1 && stripeLinks[cart[0].id]) {
                         showToast('Redirection vers Stripe en cours...');
                         setTimeout(() => window.location.href = stripeLinks[cart[0].id], 1000);
                     } else {
-                        // Complex cart (multiple items or quantities): Needs a dynamic link sent manually
                         showToast('Panier personnalisé pris en compte ! Votre lien Stripe vous a été envoyé par email.');
                         clearCart(); 
                         toggleCart();
                     }
                 } else {
-                    // Virement chosen
                     showToast('Commande validée ! Un email de confirmation avec le RIB vous a été envoyé.');
                     clearCart(); 
                     toggleCart();
@@ -570,13 +620,12 @@
             }, 1200);
         }
 
-        // --- SIMULATOR ---
         function updateSimulator() {
             const v = document.getElementById('sim-video-range').value;
             const p = document.getElementById('sim-photo-range').value;
             document.getElementById('sim-video-count').innerText = v;
             document.getElementById('sim-photo-count').innerText = p;
-            document.getElementById('sim-total-price').innerText = ((v * 50) + (p * 10)).toFixed(2) + ' €';
+            document.getElementById('sim-total-price').innerText = ((v * 80) + (p * 15)).toFixed(2) + ' €'; // Prix corrigés
         }
 
         function addSimulatedToCart() {
@@ -584,14 +633,12 @@
             const p = parseInt(document.getElementById('sim-photo-range').value);
             
             let added = false;
-            // Add exact quantities requested by the sliders
-            for(let i=0; i<v; i++) { addToCart('formule_video', 50, `Vidéo Verticale (Unité)`, 'fa-video'); added = true; }
-            for(let i=0; i<p; i++) { addToCart('formule_photo', 10, `Photo Retouchée (Unité)`, 'fa-camera'); added = true; }
+            for(let i=0; i<v; i++) { addToCart('formule_video', 80, `Vidéo Verticale (Unité)`, 'fa-video'); added = true; } // Prix 80
+            for(let i=0; i<p; i++) { addToCart('formule_photo', 15, `Photo Retouchée (Unité)`, 'fa-camera'); added = true; } // Prix 15
             
             if(!added) showToast('Veuillez sélectionner au moins un article', 'error');
         }
 
-        // --- ADMIN PANEL ---
         function updateAdmin() {
             const orders = JSON.parse(localStorage.getItem('localpulse_orders') || '[]');
             const list = document.getElementById('admin-orders-list');
